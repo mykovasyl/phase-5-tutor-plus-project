@@ -1,5 +1,4 @@
 class Tutor < User
-  has_secure_password
 
   has_many :tutor_students
   has_many :students, through: :tutor_students
