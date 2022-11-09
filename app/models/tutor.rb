@@ -1,4 +1,4 @@
-class Tutor < ApplicationRecord
+class Tutor < User
   has_secure_password
 
   has_many :tutor_students
@@ -7,4 +7,5 @@ class Tutor < ApplicationRecord
 
   validates :name, presence: true 
   validates :hourly_rate, presence: true
+  validates :subjects, presence: true
 end
