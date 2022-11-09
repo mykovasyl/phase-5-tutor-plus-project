@@ -1,7 +1,7 @@
 import React from "react";
 
 function StudentList() {
-  "This is the student list a tutor would see";
+  return <div>"This is the student list a tutor would see"</div>;
 }
 
 export default StudentList;

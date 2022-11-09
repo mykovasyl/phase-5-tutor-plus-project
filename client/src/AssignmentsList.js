@@ -1,7 +1,9 @@
 import React from "react";
 
 function AssignmentsList() {
-  "This is the assignments list that a student or parent would see.";
+  <div>
+    "This is the assignments list that a student or parent would see.";
+  </div>;
 }
 
 export default AssignmentsList;

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Home() {
   return (
@@ -9,10 +10,10 @@ function Home() {
         Upload homework for students to complete. They will be able to download
         it and upload back the completed version.
       </p>
-      <p>
-        Parents can have their own access to view homework assigned and
-        completed.
-      </p>
+      <Link to="signup" style={{ marginRight: "10px" }}>
+        Sign up today!
+      </Link>
+      <Link to="login">Log in</Link>
     </div>
   );
 }
