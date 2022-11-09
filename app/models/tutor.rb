@@ -6,4 +6,5 @@ class Tutor < ApplicationRecord
   has_many :assignments, through: :tutor_students
 
   validates :name, presence: true 
+  validates :hourly_rate, presence: true
 end
