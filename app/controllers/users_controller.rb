@@ -3,6 +3,7 @@ class UsersController < ApplicationController
 
   def create
     user = User.create!(user_params)
+    user.avatar.attach(params[:avatar])
     session[:user_id] = user.id
     render json: user, status: :accepted
   end

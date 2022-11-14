@@ -1,32 +1,39 @@
 import "./App.css";
 import { Switch, Route } from "react-router-dom";
-
+import React, { useState, useEffect } from "react";
 import NavBar from "./NavBar";
 import Home from "./Home";
-import TutorList from "./TutorList";
-import AssignmentsList from "./AssignmentsList";
-import StudentList from "./StudentList";
+// import TutorList from "./TutorList";
+// import AssignmentsList from "./AssignmentsList";
+import Students from "./Students";
 import AssignWork from "./AssignWork";
 
 function App() {
+  const [assignments, setAssignments] = useState([]);
+  const [students, setStudents] = useState([]);
+
+  useEffect(() => {
+    // fetch request for tutors with student array
+    // set state to tutors fetched
+  });
+
   return (
     <div className="App">
       <NavBar />
       <Switch>
-        {/* without a logged in user and available for all once logged in */}
         <Route exact path="/">
           <Home />
         </Route>
         {/* student is logged in */}
-        <Route path="/tutors">
+        {/* <Route path="/tutors">
           <TutorList />
         </Route>
         <Route path="/assignments">
           <AssignmentsList />
-        </Route>
+        </Route> */}
         {/* tutor is logged in */}
         <Route path="/students">
-          <StudentList />
+          <Students students={students} setStudents={setStudents} />
         </Route>
         <Route path="/assignwork">
           <AssignWork />

@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   
-  resources :assignments
-  resources :students
-  resources :tutors
+  resources :assignments, except: [:new, :show, :edit]
+  resources :students, except: [:new, :show, :edit]
+  resources :tutors, except: [:new, :show, :edit]
   resources :users, only: [:create, :show]
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!
@@ -15,5 +15,5 @@ Rails.application.routes.draw do
 
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
-  
+
 end

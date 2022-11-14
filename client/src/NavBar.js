@@ -1,16 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Container from "react-bootstrap/Container";
+import Navbar from "react-bootstrap/Navbar";
 
 function NavBar() {
-  const linkStyling = { color: "black" };
+  const linkStyling = { padding: "10px" };
 
   return (
-    <nav bg="dark" variant="dark" className="flex-row justify-content-center">
-      <Link
-        as={Link}
-        to="/"
-        style={{ marginRight: "auto", paddingLeft: "15px" }}
-      >
+    <nav>
+      <Link as={Link} to="/" style={linkStyling}>
         Tutor Plus
       </Link>
       <Link as={Link} to="/" style={linkStyling}>
