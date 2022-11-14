@@ -7,6 +7,8 @@ import Home from "./Home";
 // import AssignmentsList from "./AssignmentsList";
 import Students from "./Students";
 import AssignWork from "./AssignWork";
+import AssignmentsList from "./AssignmentsList";
+import SignUp from "./SignUp";
 
 function App() {
   const [assignments, setAssignments] = useState([]);
@@ -37,6 +39,12 @@ function App() {
         </Route>
         <Route path="/assignwork">
           <AssignWork />
+        </Route>
+        <Route path="/assignments">
+          <AssignmentsList />
+        </Route>
+        <Route path="/signup">
+          <SignUp />
         </Route>
         <Route path="*">
           <h1>404 path not found</h1>

@@ -20,6 +20,9 @@ function NavBar() {
       <Link as={Link} to="/assignwork" style={linkStyling}>
         Assign work
       </Link>
+      <Link as={Link} to="/signup" style={linkStyling}>
+        Sign up
+      </Link>
     </nav>
   );
 }
