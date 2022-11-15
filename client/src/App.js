@@ -9,6 +9,7 @@ import Students from "./Students";
 import AssignWork from "./AssignWork";
 import AssignmentsList from "./AssignmentsList";
 import SignUp from "./SignUp";
+import LogIn from "./LogIn";
 
 function App() {
   const [assignments, setAssignments] = useState([]);
@@ -45,6 +46,9 @@ function App() {
         </Route>
         <Route path="/signup">
           <SignUp />
+        </Route>
+        <Route path="/login">
+          <LogIn />
         </Route>
         <Route path="*">
           <h1>404 path not found</h1>
