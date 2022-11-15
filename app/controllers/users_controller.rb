@@ -6,17 +6,32 @@ class UsersController < ApplicationController
     user.avatar.attach(params[:avatar])
     session[:user_id] = user.id
     render json: user, status: :accepted
-    byebug
   end
 
   def show
     render json: @current_user
   end
 
+  def update
+    user_to_update = find_user
+    user_to_update.update!(user_params)
+    render json: user, status: :accepted
+  end
+
+  def destroy
+    user_to_delete = find_user
+    user_to_delete.destroy
+    head :no_content
+  end
+
   private
 
   def user_params
-    params.permit(:username, :password, :password_confirmation, :avatar)
+    params.permit(:username, :password, :password_confirmation, :avatar, :hourly_rate, :headline, :subjects, :name, :grade)
+  end
+
+  def find_user
+    User.find(params[:id])
   end
 
 end

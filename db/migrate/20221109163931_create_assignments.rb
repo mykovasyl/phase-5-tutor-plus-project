@@ -4,6 +4,7 @@ class CreateAssignments < ActiveRecord::Migration[6.1]
       t.string :name
       t.string :notes
       t.boolean :completed
+      t.references :imageable, polymorphic: true
 
       t.timestamps
     end

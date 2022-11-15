@@ -44,13 +44,14 @@ ActiveRecord::Schema.define(version: 2022_11_09_205042) do
     t.string "name"
     t.string "notes"
     t.boolean "completed"
+    t.string "imageable_type"
+    t.integer "imageable_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["imageable_type", "imageable_id"], name: "index_assignments_on_imageable"
   end
 
   create_table "students", force: :cascade do |t|
-    t.string "name"
-    t.string "grade"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -65,10 +66,6 @@ ActiveRecord::Schema.define(version: 2022_11_09_205042) do
   end
 
   create_table "tutors", force: :cascade do |t|
-    t.string "name"
-    t.string "subjects"
-    t.string "headline"
-    t.integer "hourly_rate"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -76,6 +73,11 @@ ActiveRecord::Schema.define(version: 2022_11_09_205042) do
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "password_digest"
+    t.string "subjects"
+    t.string "headline"
+    t.integer "hourly_rate"
+    t.string "name"
+    t.string "grade"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

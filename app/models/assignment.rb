@@ -1,5 +1,5 @@
 class Assignment < ApplicationRecord
-  belongs_to :tutor_students
+  belongs_to :imageable, polymorphic: true
 
   has_one_attached :avatar
 end

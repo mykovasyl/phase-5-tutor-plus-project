@@ -6,7 +6,7 @@ function SignUp() {
     password: "",
     password_confirmation: "",
     tutor: false,
-    name: "",
+    title: "",
     subjects: "",
     headline: "",
     hourly_rate: "",
@@ -14,7 +14,6 @@ function SignUp() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log("Works!");
     fetch("/tutorsignup", {
       method: "POST",
       headers: {
@@ -26,7 +25,7 @@ function SignUp() {
         if (resp.ok) {
           resp.json();
         } else {
-          console.log(resp.errors);
+          console.log(resp);
         }
       })
       .then((data) => console.log(data));
@@ -87,10 +86,10 @@ function SignUp() {
             <label>
               Full name:
               <input
-                name="name"
+                name="title"
                 type="text"
                 placeholder="Name"
-                value={signupForm.name}
+                value={signupForm.title}
                 onChange={handleInputChange}
               />
             </label>

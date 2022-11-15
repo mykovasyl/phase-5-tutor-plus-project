@@ -1,4 +1,4 @@
-class StudentsController < UsersController
+class StudentsController < ApplicationController
 
   def index 
     students = Student.all 
@@ -6,7 +6,6 @@ class StudentsController < UsersController
   end
 
   def create
-    super
     student = Student.create!(student_params)
     render json: student, status: :created
   end
