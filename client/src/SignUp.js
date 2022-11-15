@@ -4,21 +4,39 @@ function SignUp() {
   const [signupForm, setSignupForm] = useState({
     username: "",
     password: "",
-    passwordConfirmation: "",
+    password_confirmation: "",
     tutor: false,
+    name: "",
+    subjects: "",
+    headline: "",
+    hourly_rate: "",
   });
 
-  function handleSubmit() {
+  function handleSubmit(e) {
+    e.preventDefault();
     console.log("Works!");
-    // confirm if pass === passConf
+    fetch("/tutorsignup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(signupForm),
+    })
+      .then((resp) => {
+        if (resp.ok) {
+          resp.json();
+        } else {
+          console.log(resp.errors);
+        }
+      })
+      .then((data) => console.log(data));
     // alert/error if not - student signup not supported
     // POST if ok to proper signup - tutor or student
     // resp is ok?
-    // navigate to
+    // navigate to enter tutor/student details
   }
 
   function handleInputChange(e) {
-    console.log(signupForm);
     if (e.target.name === "tutor") {
       setSignupForm({ ...signupForm, [e.target.name]: !!e.target.checked });
     } else {
@@ -28,10 +46,7 @@ function SignUp() {
 
   return (
     <div>
-      <h1>
-        Join our growing family of tutors looking to organize their student's
-        work
-      </h1>
+      <h1>Join our growing family of tutors and students!</h1>
       <form onSubmit={handleSubmit}>
         <label>Choose a username:</label>
         <input
@@ -51,14 +66,14 @@ function SignUp() {
         />
         <label>Confirm password:</label>
         <input
-          name="passwordConfirmation"
+          name="password_confirmation"
           type="password"
           placeholder="Confirm password"
           value={signupForm.passwordConfirmation}
           onChange={handleInputChange}
         />
         <label>
-          Are you signing up as a tutor? Check this box:
+          Signing up as a tutor? Check this box:
           <input
             name="tutor"
             checked={signupForm.tutor}
@@ -66,6 +81,51 @@ function SignUp() {
             onChange={handleInputChange}
           />
         </label>
+        {/* tutor sign up only */}
+        {signupForm.tutor ? (
+          <>
+            <label>
+              Full name:
+              <input
+                name="name"
+                type="text"
+                placeholder="Name"
+                value={signupForm.name}
+                onChange={handleInputChange}
+              />
+            </label>
+            <label>
+              Subjects:
+              <input
+                name="subjects"
+                type="text"
+                placeholder="Subjects"
+                value={signupForm.subjects}
+                onChange={handleInputChange}
+              />
+            </label>
+            <label>
+              Choose a headline:
+              <input
+                name="headline"
+                type="text"
+                placeholder="Headline"
+                value={signupForm.headline}
+                onChange={handleInputChange}
+              />
+            </label>
+            <label>
+              Hourly rate:
+              <input
+                name="hourly_rate"
+                type="text"
+                placeholder="Hourly rate"
+                value={signupForm.hourlyRate}
+                onChange={handleInputChange}
+              />
+            </label>
+          </>
+        ) : null}
         <button type="submit">Sign up!</button>
       </form>
     </div>

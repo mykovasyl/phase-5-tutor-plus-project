@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
 
   post "/tutorsignup", to: "tutors#create"
-  post "/studentsignup", to: "students#create"
+  # post "/studentsignup", to: "students#create"
   
   get "/auth", to: "users#show"
 

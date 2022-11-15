@@ -7,6 +7,7 @@ class TutorsController < UsersController
   
   def create
     super
+    byebug
     tutor = Tutor.create!(tutor_params)
     render json: tutor, status: :created
   end

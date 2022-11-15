@@ -6,6 +6,7 @@ class UsersController < ApplicationController
     user.avatar.attach(params[:avatar])
     session[:user_id] = user.id
     render json: user, status: :accepted
+    byebug
   end
 
   def show
