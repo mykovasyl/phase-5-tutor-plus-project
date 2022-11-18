@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function SignUp() {
+  const [error, setError] = useState([]);
   const [signupForm, setSignupForm] = useState({
     username: "",
     password: "",
@@ -13,6 +14,8 @@ function SignUp() {
     hourly_rate: "",
   });
 
+  const navigate = useNavigate();
+
   function handleSubmit(e) {
     e.preventDefault();
     fetch("/usersignup", {
@@ -21,19 +24,13 @@ function SignUp() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(signupForm),
-    })
-      .then((resp) => {
-        if (resp.ok) {
-          resp.json();
-        } else {
-          console.log(resp);
-        }
-      })
-      .then((data) => console.log(data));
-    // alert/error if not - student signup not supported
-    // POST if ok to proper signup - tutor or student
-    // resp is ok?
-    // navigate to enter tutor/student details
+    }).then((resp) => {
+      if (resp.ok) {
+        resp.json().then(navigate("/login"));
+      } else {
+        resp.json().then((err) => setError(err.errors));
+      }
+    });
   }
 
   function handleInputChange(e) {
@@ -80,6 +77,9 @@ function SignUp() {
             type="checkbox"
             onChange={handleInputChange}
           />
+          <br></br>
+          Sign up for students is not currently supported. Please check back
+          later!
         </label>
         {/* tutor sign up only */}
         {signupForm.tutor ? (
@@ -120,13 +120,16 @@ function SignUp() {
                 name="hourly_rate"
                 type="text"
                 placeholder="Hourly rate"
-                value={signupForm.hourlyRate}
+                value={signupForm.hourly_rate}
                 onChange={handleInputChange}
               />
             </label>
           </>
         ) : null}
         <button type="submit">Sign up!</button>
+        {error.map((err) => {
+          <h4>{err}</h4>;
+        })}
       </form>
     </div>
   );

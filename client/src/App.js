@@ -1,5 +1,5 @@
 import "./App.css";
-import { Switch, Route } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import NavBar from "./NavBar";
 import Home from "./Home";
@@ -14,6 +14,7 @@ import LogIn from "./LogIn";
 function App() {
   const [assignments, setAssignments] = useState([]);
   const [students, setStudents] = useState([]);
+  const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
     // fetch request for tutors with student array
@@ -23,10 +24,14 @@ function App() {
   return (
     <div className="App">
       <NavBar />
-      <Switch>
-        <Route exact path="/">
-          <Home />
-        </Route>
+      <Routes>
+        <Route
+          exact
+          path="/"
+          element={
+            <Home currentUser={currentUser} setCurrentUser={setCurrentUser} />
+          }
+        />
         {/* student is logged in */}
         {/* <Route path="/tutors">
           <TutorList />
@@ -35,26 +40,38 @@ function App() {
           <AssignmentsList />
         </Route> */}
         {/* tutor is logged in */}
-        <Route path="/students">
-          <Students students={students} setStudents={setStudents} />
-        </Route>
-        <Route path="/assignwork">
-          <AssignWork />
-        </Route>
-        <Route path="/assignments">
-          <AssignmentsList />
-        </Route>
-        <Route path="/signup">
-          <SignUp />
-        </Route>
-        <Route path="/login">
-          <LogIn />
-        </Route>
-        <Route path="*">
-          <h1>404 path not found</h1>
-          <h3>Try using the following paths:</h3>
-        </Route>
-      </Switch>
+        <Route
+          path="/students"
+          element={<Students students={students} setStudents={setStudents} />}
+        />
+        <Route
+          path="/assignwork"
+          element={<AssignWork students={students} setStudents={setStudents} />}
+        />
+        <Route
+          path="/assignments"
+          element={
+            <AssignmentsList students={students} setStudents={setStudents} />
+          }
+        />
+        <Route
+          path="/signup"
+          element={<SignUp setCurrentUser={setCurrentUser} />}
+        />
+        <Route
+          path="/login"
+          element={<LogIn setCurrentUser={setCurrentUser} />}
+        />
+        <Route
+          path="*"
+          element={
+            <>
+              <h1>404 path not found</h1>
+              <h3>Try using the following paths:</h3>
+            </>
+          }
+        />
+      </Routes>
     </div>
   );
 }

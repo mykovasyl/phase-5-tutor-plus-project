@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function LogIn() {
+function LogIn({ setCurrentUser }) {
   const [login, setLogin] = useState({
     username: "",
     password: "",
   });
+  const navigate = useNavigate();
 
   function handleInputChange(e) {
     setLogin({ ...login, [e.target.name]: e.target.value });
@@ -18,8 +19,17 @@ function LogIn() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(login),
     })
-      .then((resp) => resp.json())
-      .then((loggedInUser) => console.log(loggedInUser));
+      .then((resp) => {
+        if (resp.ok) {
+          resp.json();
+        } else {
+          alert("Invalid username or password");
+        }
+      })
+      .then((loggedInUser) => {
+        setCurrentUser(loggedInUser);
+        navigate("/");
+      });
   }
 
   return (
