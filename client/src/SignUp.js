@@ -85,27 +85,29 @@ function SignUp() {
             onChange={handleInputChange}
           />
         </label>
-        <p>Are you signing up as a tutor or student?</p>
-        <label>
-          <input
-            type="radio"
-            name="type"
-            value="student"
-            checked={signupForm.type === "student"}
-            onChange={handleOptionChange}
-          />
-          Student
-        </label>
-        <label>
-          <input
-            type="radio"
-            name="type"
-            value="tutor"
-            checked={signupForm.type === "tutor"}
-            onChange={handleOptionChange}
-          />
-          Tutor
-        </label>
+        <p>
+          Are you signing up as a tutor or student?
+          <label>
+            <input
+              type="radio"
+              name="type"
+              value="Student"
+              checked={signupForm.type === "Student"}
+              onChange={handleOptionChange}
+            />
+            Student
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="type"
+              value="Tutor"
+              checked={signupForm.type === "Tutor"}
+              onChange={handleOptionChange}
+            />
+            Tutor
+          </label>
+        </p>
         {/* tutor or student signup options */}
         {signupForm.type === "tutor" ? (
           <>
