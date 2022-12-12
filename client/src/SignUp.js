@@ -7,18 +7,18 @@ function SignUp() {
     username: "",
     password: "",
     password_confirmation: "",
-    tutor: false,
+    type: "",
     name: "",
     subjects: "",
     headline: "",
-    hourly_rate: "",
+    email: "",
   });
 
   const navigate = useNavigate();
 
   function handleSubmit(e) {
     e.preventDefault();
-    fetch("/usersignup", {
+    fetch("/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -34,55 +34,80 @@ function SignUp() {
   }
 
   function handleInputChange(e) {
-    if (e.target.name === "tutor") {
-      setSignupForm({ ...signupForm, [e.target.name]: !!e.target.checked });
-    } else {
-      setSignupForm({ ...signupForm, [e.target.name]: e.target.value });
-    }
+    setSignupForm({ ...signupForm, [e.target.name]: e.target.value });
+  }
+
+  function handleOptionChange(e) {
+    setSignupForm({ ...signupForm, [e.target.name]: e.target.value });
   }
 
   return (
     <div>
       <h1>Join our growing family of tutors and students!</h1>
       <form onSubmit={handleSubmit}>
-        <label>Choose a username:</label>
-        <input
-          name="username"
-          type="text"
-          placeholder="Username"
-          value={signupForm.username}
-          onChange={handleInputChange}
-        />
-        <label>Create a password:</label>
-        <input
-          name="password"
-          type="password"
-          placeholder="Password"
-          value={signupForm.password}
-          onChange={handleInputChange}
-        />
-        <label>Confirm password:</label>
-        <input
-          name="password_confirmation"
-          type="password"
-          placeholder="Confirm password"
-          value={signupForm.passwordConfirmation}
-          onChange={handleInputChange}
-        />
         <label>
-          Signing up as a tutor? Check this box:
+          Choose a username:
           <input
-            name="tutor"
-            checked={signupForm.tutor}
-            type="checkbox"
+            name="username"
+            type="text"
+            placeholder="Username"
+            value={signupForm.username}
             onChange={handleInputChange}
           />
-          <br></br>
-          Sign up for students is not currently supported. Please check back
-          later!
         </label>
-        {/* tutor sign up only */}
-        {signupForm.tutor ? (
+        <label>
+          Enter your email:
+          <input
+            name="email"
+            type="text"
+            placeholder="email@example.com"
+            value={signupForm.username}
+            onChange={handleInputChange}
+          />
+        </label>
+        <label>
+          Create a password:
+          <input
+            name="password"
+            type="password"
+            placeholder="Password"
+            value={signupForm.password}
+            onChange={handleInputChange}
+          />
+        </label>
+        <label>
+          Confirm password:
+          <input
+            name="password_confirmation"
+            type="password"
+            placeholder="Confirm password"
+            value={signupForm.password_confirmation}
+            onChange={handleInputChange}
+          />
+        </label>
+        <p>Are you signing up as a tutor or student?</p>
+        <label>
+          <input
+            type="radio"
+            name="type"
+            value="student"
+            checked={signupForm.type === "student"}
+            onChange={handleOptionChange}
+          />
+          Student
+        </label>
+        <label>
+          <input
+            type="radio"
+            name="type"
+            value="tutor"
+            checked={signupForm.type === "tutor"}
+            onChange={handleOptionChange}
+          />
+          Tutor
+        </label>
+        {/* tutor or student signup options */}
+        {signupForm.type === "tutor" ? (
           <>
             <label>
               Full name:
@@ -114,13 +139,26 @@ function SignUp() {
                 onChange={handleInputChange}
               />
             </label>
+          </>
+        ) : signupForm.type === "student" ? (
+          <>
             <label>
-              Hourly rate:
+              Full name:
               <input
-                name="hourly_rate"
+                name="name"
                 type="text"
-                placeholder="Hourly rate"
-                value={signupForm.hourly_rate}
+                placeholder="Name"
+                value={signupForm.name}
+                onChange={handleInputChange}
+              />
+            </label>
+            <label>
+              Grade:
+              <input
+                name="grade"
+                type="text"
+                placeholder="Grade"
+                value={signupForm.subjects}
                 onChange={handleInputChange}
               />
             </label>

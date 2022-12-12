@@ -4,7 +4,7 @@ class Tutor < User
   has_many :assignments, as: :imageable
   
   validates :subjects, presence: true
-  validates :hourly_rate, presence: true
-  
+  validates :name, presence: true
   validates :grade, absence: true
+
 end

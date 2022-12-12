@@ -1,14 +1,14 @@
 Rails.application.routes.draw do
   
   get "/me", to: "users#show"
-  post "/usersignup", to: "users#create"
+  post "/signup", to: "users#create"
 
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
   
-  resources :assignments, except: [:new, :show, :edit]
-  resources :students, except: [:new, :show, :edit]
-  # resources :users
+  resources :assignments
+  resources :students
+  resources :users
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!
   

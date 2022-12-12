@@ -1,5 +1,5 @@
 import "./App.css";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import NavBar from "./NavBar";
 import Home from "./Home";
@@ -12,24 +12,46 @@ import SignUp from "./SignUp";
 import LogIn from "./LogIn";
 
 function App() {
-  const [assignments, setAssignments] = useState([]);
   const [students, setStudents] = useState([]);
   const [currentUser, setCurrentUser] = useState(null);
 
-  useEffect(() => {
-    // fetch request for tutors with student array
-    // set state to tutors fetched
-  });
+  const navigate = useNavigate();
+
+  // useEffect(() => {
+  //   fetch("/me")
+  //     .then((resp) => resp.json())
+  //     .then((user) => {
+  //       if (user.students === undefined) {
+  //         setUserTickets([]);
+  //         setCurrentUser(null);
+  //       } else {
+  //         setUserTickets(user.students);
+  //         setCurrentUser(user);
+  //       }
+  //     });
+  // }, []);
+
+  function handleLogOut() {
+    fetch("/logout", {
+      method: "DELETE",
+    });
+    setCurrentUser(null);
+    navigate("/");
+  }
 
   return (
     <div className="App">
-      <NavBar />
+      <NavBar currentUser={currentUser} handleLogOut={handleLogOut} />
       <Routes>
         <Route
           exact
           path="/"
           element={
-            <Home currentUser={currentUser} setCurrentUser={setCurrentUser} />
+            <Home
+              currentUser={currentUser}
+              setCurrentUser={setCurrentUser}
+              handleLogOut={handleLogOut}
+            />
           }
         />
         {/* student is logged in */}
@@ -67,7 +89,6 @@ function App() {
           element={
             <>
               <h1>404 path not found</h1>
-              <h3>Try using the following paths:</h3>
             </>
           }
         />

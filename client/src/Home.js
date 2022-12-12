@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Home({ currentUser, setCurrentUser }) {
   // const [loggedInUser, setLoggedInUser] = useState(null);
   // useEffect(() => {
   //   console.log(currentUser);
   // }, [currentUser]);
+  const navigate = useNavigate();
 
   const handleLogOut = () => {
-    setCurrentUser({});
-    console.log(currentUser);
     fetch("/logout", {
       method: "DELETE",
     });
+    setCurrentUser(null);
+    navigate("/");
   };
 
   return (
