@@ -6,17 +6,17 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true
   validates :password, presence: true
   validates :password_confirmation, presence: true
-  validates :role, presence: true
+  validates :type, presence: true
 
-  enum role: [:student, :tutor]
-  after_initialize :set_default_role, :if => :new_record?
+  # enum role: [:student, :tutor]
+  # after_initialize :set_default_role, :if => :new_record?
 
-  def set_default_role
-    if(self.grade) 
-      self.role = :student
-    else 
-      self.role = :tutor
-    end
-  end
+  # def set_default_role
+  #   if(self.grade) 
+  #     self.role = :student
+  #   else 
+  #     self.role = :tutor
+  #   end
+  # end
 
 end
