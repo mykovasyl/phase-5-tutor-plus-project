@@ -1,21 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React from "react";
+import { Link } from "react-router-dom";
 
-function Home({ currentUser, setCurrentUser }) {
-  // const [loggedInUser, setLoggedInUser] = useState(null);
-  // useEffect(() => {
-  //   console.log(currentUser);
-  // }, [currentUser]);
-  const navigate = useNavigate();
-
-  const handleLogOut = () => {
-    fetch("/logout", {
-      method: "DELETE",
-    });
-    setCurrentUser(null);
-    navigate("/");
-  };
-
+function Home({ currentUser, handleLogOut }) {
   return (
     <div>
       <h1>Tutor Plus</h1>
@@ -24,7 +10,7 @@ function Home({ currentUser, setCurrentUser }) {
         Upload homework for students to complete. They will be able to download
         it and upload back the completed version.
       </p>
-      {currentUser ? (
+      {Object.keys(currentUser).length !== 0 ? (
         <>
           <p>Welcome back, {currentUser.name}</p>
           <button onClick={handleLogOut}>Log out</button>

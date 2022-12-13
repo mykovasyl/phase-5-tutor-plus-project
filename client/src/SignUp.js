@@ -61,7 +61,7 @@ function SignUp() {
             name="email"
             type="text"
             placeholder="email@example.com"
-            value={signupForm.username}
+            value={signupForm.email}
             onChange={handleInputChange}
           />
         </label>
@@ -109,7 +109,7 @@ function SignUp() {
           </label>
         </p>
         {/* tutor or student signup options */}
-        {signupForm.type === "tutor" ? (
+        {signupForm.type === "Tutor" ? (
           <>
             <label>
               Full name:
@@ -142,7 +142,7 @@ function SignUp() {
               />
             </label>
           </>
-        ) : signupForm.type === "student" ? (
+        ) : signupForm.type === "Student" ? (
           <>
             <label>
               Full name:

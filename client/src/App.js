@@ -7,35 +7,32 @@ import Home from "./Home";
 // import AssignmentsList from "./AssignmentsList";
 import Students from "./Students";
 import AssignWork from "./AssignWork";
-import AssignmentsList from "./AssignmentsList";
+// import AssignmentsList from "./AssignmentsList";
 import SignUp from "./SignUp";
 import LogIn from "./LogIn";
 
 function App() {
+  const [errors, setErrors] = useState([]);
   const [students, setStudents] = useState([]);
-  const [currentUser, setCurrentUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState({});
 
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   fetch("/me")
-  //     .then((resp) => resp.json())
-  //     .then((user) => {
-  //       if (user.students === undefined) {
-  //         setUserTickets([]);
-  //         setCurrentUser(null);
-  //       } else {
-  //         setUserTickets(user.students);
-  //         setCurrentUser(user);
-  //       }
-  //     });
-  // }, []);
+  useEffect(() => {
+    fetch("/me").then((resp) => {
+      if (resp.ok) {
+        resp.json().then((user) => setCurrentUser(user));
+      } else {
+        resp.json().then((error) => setErrors(error));
+      }
+    });
+  }, []);
 
   function handleLogOut() {
     fetch("/logout", {
       method: "DELETE",
     });
-    setCurrentUser(null);
+    setCurrentUser({});
     navigate("/");
   }
 
@@ -47,11 +44,7 @@ function App() {
           exact
           path="/"
           element={
-            <Home
-              currentUser={currentUser}
-              setCurrentUser={setCurrentUser}
-              handleLogOut={handleLogOut}
-            />
+            <Home currentUser={currentUser} handleLogOut={handleLogOut} />
           }
         />
         {/* student is logged in */}
@@ -70,12 +63,12 @@ function App() {
           path="/assignwork"
           element={<AssignWork students={students} setStudents={setStudents} />}
         />
-        <Route
+        {/* <Route
           path="/assignments"
           element={
             <AssignmentsList students={students} setStudents={setStudents} />
           }
-        />
+        /> */}
         <Route
           path="/signup"
           element={<SignUp setCurrentUser={setCurrentUser} />}

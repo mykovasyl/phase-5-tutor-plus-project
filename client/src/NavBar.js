@@ -4,30 +4,42 @@ import { Link } from "react-router-dom";
 function NavBar({ currentUser, handleLogOut }) {
   const linkStyling = { padding: "10px" };
 
+  function tutorLinks() {
+    return (
+      <>
+        <Link as={Link} to="/students" style={linkStyling}>
+          Students
+        </Link>
+      </>
+    );
+  }
+
+  function studentLinks() {
+    return (
+      <>
+        <Link as={Link} to="/tutors" style={linkStyling}>
+          Tutors
+        </Link>
+        <Link as={Link} to="/assignments" style={linkStyling}>
+          Assignments
+        </Link>
+      </>
+    );
+  }
+
   return (
     <nav>
       <Link as={Link} to="/" style={linkStyling}>
         Tutor Plus
       </Link>
       {/* check if tutor or student, display proper links */}
-      {/* {currentUser.type === "tutor" ? (
-        <>
-          <Link as={Link} to="/students" style={linkStyling}>
-            Students
-          </Link>
-        </>
-      ) : currentUser.type === "student" ? (
-        <>
-          <Link as={Link} to="/tutors" style={linkStyling}>
-            Tutors
-          </Link>
-          <Link as={Link} to="/assignments" style={linkStyling}>
-            Assignments
-          </Link>
-        </>
-      ) : null} */}
+      {currentUser.type === "Tutor"
+        ? tutorLinks()
+        : currentUser.type === "Student"
+        ? studentLinks()
+        : null}
       {/* check if logged in, display proper buttons */}
-      {currentUser ? (
+      {currentUser.type ? (
         <>
           <Link as={Link} to="/profile" style={linkStyling}>
             <button>Profile</button>

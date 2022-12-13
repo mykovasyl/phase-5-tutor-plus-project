@@ -18,18 +18,16 @@ function LogIn({ setCurrentUser }) {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(login),
-    })
-      .then((resp) => {
-        if (resp.ok) {
-          resp.json();
-        } else {
-          alert("Invalid username or password");
-        }
-      })
-      .then((loggedInUser) => {
-        setCurrentUser(loggedInUser);
-        navigate("/");
-      });
+    }).then((resp) => {
+      if (resp.ok) {
+        resp.json().then((loggedInUser) => {
+          setCurrentUser(loggedInUser);
+          navigate("/");
+        });
+      } else {
+        alert("Invalid username or password");
+      }
+    });
   }
 
   return (
