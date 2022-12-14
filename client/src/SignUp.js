@@ -10,6 +10,7 @@ function SignUp() {
     type: "",
     name: "",
     subjects: "",
+    grade: "",
     headline: "",
     email: "",
   });
@@ -160,7 +161,7 @@ function SignUp() {
                 name="grade"
                 type="text"
                 placeholder="Grade"
-                value={signupForm.subjects}
+                value={signupForm.grade}
                 onChange={handleInputChange}
               />
             </label>
