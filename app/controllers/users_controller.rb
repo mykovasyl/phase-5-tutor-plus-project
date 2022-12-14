@@ -2,7 +2,14 @@ class UsersController < ApplicationController
   skip_before_action :authorize, only: :create
 
   def index
-    @users = User.all
+    users = User.all
+    if @current_user.type == "Tutor" 
+      students = users.select{|user| user.type == "Student"}
+      render json: students, status: :ok
+    else
+      tutors = users.select{|user| user.type == "Tutor"}
+      render json: tutors, status: :ok
+    end
   end
 
   def create

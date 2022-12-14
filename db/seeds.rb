@@ -5,3 +5,21 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+require 'faker'
+
+faker_password = Faker::Internet.password
+puts "Seeding..."
+10.times do |i|
+  User.create(
+    username: Faker::Name.unique.name,
+    password: faker_password,
+    password_confirmation: faker_password,
+    email: Faker::Internet.email,
+    name: Faker::Name.name,
+    grade: Faker::Number.between(from: 1, to: 12),
+    type: "Student",
+    # avatar: Faker::Avatar.image
+  )
+end
+puts "Done!"
