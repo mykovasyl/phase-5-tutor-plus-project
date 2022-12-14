@@ -2,14 +2,17 @@ class UsersController < ApplicationController
   skip_before_action :authorize, only: :create
 
   def index
-    users = User.all
-    if @current_user.type == "Tutor" 
-      students = users.select{|user| user.type == "Student"}
-      render json: students, status: :ok
-    else
-      tutors = users.select{|user| user.type == "Tutor"}
-      render json: tutors, status: :ok
-    end
+    all_users
+  end
+
+  def tutor_students 
+    students = all_users.select{|user| user.type == "Student"}
+    render json: students, status: :ok
+  end
+
+  def student_tutors
+    tutors = all_users.select{|user| user.type == "Tutor"}
+    render json: tutors, status: :ok
   end
 
   def create
@@ -36,6 +39,10 @@ class UsersController < ApplicationController
   end
 
   private
+
+  def all_users
+    User.all
+  end
 
   def new_user_params
     params.permit(:username, :password, :password_confirmation, :avatar, :headline, :subjects, :name, :grade, :email, :type)
