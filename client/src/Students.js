@@ -4,7 +4,7 @@ import Student from "./Student";
 function Students({ students, setStudents }) {
   return (
     <div>
-      <h1>All students</h1>
+      <h1>Your students</h1>
       {students.map((student) => {
         return (
           <Student
