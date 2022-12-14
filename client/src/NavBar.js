@@ -10,6 +10,9 @@ function NavBar({ currentUser, handleLogOut }) {
         <Link as={Link} to="/students" style={linkStyling}>
           Students
         </Link>
+        <Link as={Link} to="/findstudents" style={linkStyling}>
+          Find Students
+        </Link>
       </>
     );
   }

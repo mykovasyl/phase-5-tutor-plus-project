@@ -5,6 +5,7 @@ import NavBar from "./NavBar";
 import Home from "./Home";
 // import TutorList from "./TutorList";
 // import AssignmentsList from "./AssignmentsList";
+import FindStudents from "./FindStudents";
 import Students from "./Students";
 import AssignWork from "./AssignWork";
 // import AssignmentsList from "./AssignmentsList";
@@ -63,6 +64,7 @@ function App() {
           path="/assignwork"
           element={<AssignWork students={students} setStudents={setStudents} />}
         />
+        <Route path="/findstudents" element={<FindStudents />} />
         {/* <Route
           path="/assignments"
           element={
