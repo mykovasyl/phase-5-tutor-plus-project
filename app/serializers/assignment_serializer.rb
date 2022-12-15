@@ -1,3 +1,3 @@
 class AssignmentSerializer < ActiveModel::Serializer
-  attributes :id, :name, :notes, :completed, :files
+  attributes :id, :name, :notes, :completed, :attachments
 end

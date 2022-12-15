@@ -4,49 +4,26 @@ import { Link } from "react-router-dom";
 
 function Student({ student, setStudents }) {
   const [assignments, setAssignments] = useState([]); //set state to student.assignments
-  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [modalShow, setModalShow] = useState(false);
 
-  const closeModal = () => {
-    setModalIsOpen(false);
-  };
-
-  const openModal = () => {
-    setModalIsOpen(true);
-  };
+  function handleModalShow() {
+    setModalShow(!modalShow);
+  }
 
   return (
     <div>
       <button
-        onClick={openModal}
-        className="btn btn-primary"
+        onClick={handleModalShow}
         style={{ marginBottom: "10px" }}
-        disabled={modalIsOpen}
         type="button"
-      ></button>
+      >
+        <h2>{student.name}</h2>
+        <p>{student.avatar}</p>
+      </button>
       <ReactModal
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        shouldCloseOnOverlayClick={true}
-        shouldCloseOnEsc={true}
+        isOpen={modalShow}
+        onRequestClose={handleModalShow}
         ariaHideApp={false}
-        overlayClassName="modal-overlay"
-        className="Modal"
-        style={{
-          overlay: {
-            backgroundColor: "rgba(0, 0, 0, 0.75)",
-            zIndex: 999,
-            top: "50%",
-            left: "50%",
-            right: "auto",
-            bottom: "auto",
-            marginRight: "-50%",
-            transform: "translate(-50%, -50%)",
-            maxWidth: "90vw",
-            minWidth: "90vw",
-            maxHeight: "90vh",
-            minHeight: "90vh",
-          },
-        }}
         contentStyle={{
           backgroundColor: "white",
           borderRadius: "0",
@@ -67,20 +44,14 @@ function Student({ student, setStudents }) {
           padding: "20px",
         }}
       >
-        {/* <h2>{student.name}</h2>
+        <h2>{student.name}</h2>
         <p>{student.avatar}</p>
         <p>{student.subjects}</p>
-        <p>{student.assignments}</p> */}
+        <p>{student.assignments}</p>
         <Link to="/assignwork" state={{ student: student }}>
           <button type="button">Assign Work</button>
         </Link>
-        <button
-          onClick={() => {
-            setModalIsOpen(false);
-          }}
-        >
-          Close
-        </button>
+        <button onClick={handleModalShow}>Close</button>
       </ReactModal>
     </div>
   );

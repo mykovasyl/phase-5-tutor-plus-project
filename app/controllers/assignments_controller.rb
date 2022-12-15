@@ -7,7 +7,6 @@ class AssignmentsController < ApplicationController
 
   def create
     assignment = Assignment.create!(new_assignment_params)
-    session[:assignment_id] = assignment.id
     render json: assignment, status: :accepted
   end
 

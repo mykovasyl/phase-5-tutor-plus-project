@@ -12,10 +12,10 @@ function AssignWork() {
     e.preventDefault();
     let formData = new FormData();
     formData.append("file", selectedFile);
-    fetch("/assignwork", {
+    fetch("/assignments", {
       method: "POST",
       headers: {
-        "Content-Type": "application/",
+        "Content-Type": "application/json",
       },
       body: { formData },
     }).then((resp) => {

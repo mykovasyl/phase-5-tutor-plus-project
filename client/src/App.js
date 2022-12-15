@@ -15,6 +15,7 @@ import LogIn from "./LogIn";
 function App() {
   const [errors, setErrors] = useState([]);
   const [students, setStudents] = useState([]);
+
   const [currentUser, setCurrentUser] = useState({});
 
   const navigate = useNavigate();
@@ -22,7 +23,10 @@ function App() {
   useEffect(() => {
     fetch("/me").then((resp) => {
       if (resp.ok) {
-        resp.json().then((user) => setCurrentUser(user));
+        resp.json().then((user) => {
+          setCurrentUser(user);
+          setStudents(user.students);
+        });
       } else {
         resp.json().then((error) => setErrors(error));
       }
@@ -64,7 +68,16 @@ function App() {
           path="/assignwork"
           element={<AssignWork students={students} setStudents={setStudents} />}
         />
-        <Route path="/findstudents" element={<FindStudents />} />
+        <Route
+          path="/findstudents"
+          element={
+            <FindStudents
+              currentUser={currentUser}
+              students={students}
+              setStudents={setStudents}
+            />
+          }
+        />
         {/* <Route
           path="/assignments"
           element={

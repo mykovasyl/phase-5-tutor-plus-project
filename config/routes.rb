@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get "/gettutors", to: "users#student_tutors"
   
   resources :assignments
+  resources :tutor_students, only: [:create]
   resources :users
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!
