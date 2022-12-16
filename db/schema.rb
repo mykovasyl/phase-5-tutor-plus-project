@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_12_12_230706) do
+ActiveRecord::Schema.define(version: 2022_12_16_145607) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 2022_12_12_230706) do
     t.index ["imageable_type", "imageable_id"], name: "index_assignments_on_imageable"
   end
 
-  create_table "tutor_students", id: false, force: :cascade do |t|
+  create_table "tutor_students", force: :cascade do |t|
     t.integer "student_id"
     t.integer "tutor_id"
   end
@@ -74,4 +74,5 @@ ActiveRecord::Schema.define(version: 2022_12_12_230706) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "assignments", "tutor_students", column: "id"
 end

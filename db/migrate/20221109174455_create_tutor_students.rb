@@ -1,6 +1,6 @@
 class CreateTutorStudents < ActiveRecord::Migration[6.1]
   def change
-    create_table :tutor_students, id: false do |t|
+    create_table :tutor_students do |t|
       t.integer :student_id
       t.integer :tutor_id
     end

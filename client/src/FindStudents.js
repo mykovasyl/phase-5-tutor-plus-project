@@ -28,7 +28,7 @@ function FindStudents({ currentUser, students, setStudents }) {
       }),
     })
       .then((resp) => resp.json())
-      .then((newTutorStudent) => setStudents([...students, newTutorStudent]));
+      .then((updatedStudent) => setStudents([...students, updatedStudent]));
   }
 
   const displayStudents = allStudents.map((student) => {

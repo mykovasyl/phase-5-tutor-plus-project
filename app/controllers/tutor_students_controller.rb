@@ -3,7 +3,8 @@ class TutorStudentsController < ApplicationController
 
   def create
     new_tutor_student = TutorStudent.create!(tutor_student_params)
-    render json: new_tutor_student, status: :created
+    updated_student = Student.find(params[:tutor_id])
+    render json: updated_student, status: :created
   end
 
   private
