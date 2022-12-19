@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   def tutors_students 
     students = all_users.select{|user| user.type == "Student"}
     # filter students for only those not currently associated with tutor
-    render json: students, status: :ok
+    render json: students, include: 'assignments.tutor', status: :ok
   end
 
   # def students_tutors
@@ -25,7 +25,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    render json: @current_user
+    render json: @current_user, include: 'students.assignments'
   end
 
   def update
