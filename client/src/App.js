@@ -66,7 +66,13 @@ function App() {
         />
         <Route
           path="/assignwork"
-          element={<AssignWork students={students} setStudents={setStudents} />}
+          element={
+            <AssignWork
+              students={students}
+              setStudents={setStudents}
+              currentUser={currentUser}
+            />
+          }
         />
         <Route
           path="/findstudents"

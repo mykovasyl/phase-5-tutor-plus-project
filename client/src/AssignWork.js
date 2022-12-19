@@ -1,16 +1,25 @@
 import React, { useState } from "react";
+import { useLocation } from "react-router-dom";
 
-function AssignWork() {
+function AssignWork({ currentUser }) {
   const [error, setError] = useState([]);
+  const location = useLocation();
+  const { studentId } = location.state;
   // const [selectedFile, setSelectedFile] = useState(null);
   const [formData, setFormData] = useState({
     name: "",
     notes: "",
     subject: "",
+    // files: [],
+    tutor_id: currentUser.id,
+    student_id: studentId,
   });
 
   // function onFileChange(e) {
-  //   setSelectedFile(e.target.files[0]);
+  //   setFormData({
+  //     ...formData,
+  //     files: [...formData.files, e.target.files[0]],
+  //   });
   // }
 
   function handleChange(e) {
@@ -19,17 +28,15 @@ function AssignWork() {
 
   function onFormSubmit(e) {
     e.preventDefault();
-    // let formData = new FormData();
-    // formData.append("attachments", selectedFile);
     fetch("/assignments", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: formData,
+      body: JSON.stringify(formData),
     }).then((resp) => {
       if (resp.ok) {
-        resp.then((newAssignment) => {
+        resp.json().then((newAssignment) => {
           console.log(newAssignment);
         });
       } else {

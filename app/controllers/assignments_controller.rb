@@ -27,7 +27,7 @@ class AssignmentsController < ApplicationController
   private
 
   def new_assignment_params
-    params.permit(:name, :subject, :attachments, :notes)
+    params.permit(:name, :subject, :notes, :tutor_id, :student_id)
   end
 
   # def update_assignment_params
