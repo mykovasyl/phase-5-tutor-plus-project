@@ -11,6 +11,7 @@ import AssignWork from "./AssignWork";
 // import AssignmentsList from "./AssignmentsList";
 import SignUp from "./SignUp";
 import LogIn from "./LogIn";
+import Profile from "./Profile";
 
 function App() {
   const [errors, setErrors] = useState([]);
@@ -25,7 +26,12 @@ function App() {
       if (resp.ok) {
         resp.json().then((user) => {
           setCurrentUser(user);
-          setStudents(user.students);
+          let studentsList = [
+            ...new Map(
+              user.students.map((student) => [student["id"], student])
+            ).values(),
+          ];
+          setStudents(studentsList);
         });
       } else {
         resp.json().then((error) => setErrors(error));
@@ -38,6 +44,7 @@ function App() {
       method: "DELETE",
     });
     setCurrentUser({});
+    setStudents([]);
     navigate("/");
   }
 
@@ -49,7 +56,11 @@ function App() {
           exact
           path="/"
           element={
-            <Home currentUser={currentUser} handleLogOut={handleLogOut} />
+            <Home
+              currentUser={currentUser}
+              handleLogOut={handleLogOut}
+              errors={errors}
+            />
           }
         />
         {/* student is logged in */}
@@ -91,12 +102,24 @@ function App() {
           }
         /> */}
         <Route
+          path="/profile"
+          element={
+            <Profile
+              currentUser={currentUser}
+              setCurrentUser={setCurrentUser}
+              setStudents={setStudents}
+            />
+          }
+        />
+        <Route
           path="/signup"
           element={<SignUp setCurrentUser={setCurrentUser} />}
         />
         <Route
           path="/login"
-          element={<LogIn setCurrentUser={setCurrentUser} />}
+          element={
+            <LogIn setCurrentUser={setCurrentUser} setStudents={setStudents} />
+          }
         />
         <Route
           path="*"

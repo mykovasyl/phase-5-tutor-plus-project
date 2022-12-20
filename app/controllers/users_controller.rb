@@ -7,7 +7,7 @@ class UsersController < ApplicationController
 
   # better to add tutor controller? will that carry association? how?
   def tutors_students 
-    students = all_users.select{|user| user.type == "Student"}
+    students = all_users.select{|user| user.type == "Student"} 
     # filter students for only those not currently associated with tutor
     render json: students, include: 'assignments.tutor', status: :ok
   end

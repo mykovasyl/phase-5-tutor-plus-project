@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
-function AssignWork({ currentUser }) {
+function AssignWork({ currentUser, setStudents, students }) {
   const [error, setError] = useState([]);
   const location = useLocation();
+  const navigate = useNavigate();
   const { studentId } = location.state;
   // const [selectedFile, setSelectedFile] = useState(null);
   const [formData, setFormData] = useState({
@@ -38,6 +39,16 @@ function AssignWork({ currentUser }) {
       if (resp.ok) {
         resp.json().then((newAssignment) => {
           console.log(newAssignment);
+          setStudents([...students, newAssignment.student]);
+          // setFormData({
+          //   name: "",
+          //   notes: "",
+          //   subject: "",
+          //   // files: [],
+          //   tutor_id: "",
+          //   student_id: "",
+          // });
+          navigate("/students");
         });
       } else {
         resp.json().then((error) => setError(error.errors));

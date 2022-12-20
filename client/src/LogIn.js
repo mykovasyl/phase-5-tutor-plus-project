@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function LogIn({ setCurrentUser }) {
+function LogIn({ setCurrentUser, setStudents }) {
   const [login, setLogin] = useState({
     username: "",
     password: "",
@@ -22,6 +22,7 @@ function LogIn({ setCurrentUser }) {
       if (resp.ok) {
         resp.json().then((loggedInUser) => {
           setCurrentUser(loggedInUser);
+          setStudents(loggedInUser.students);
           navigate("/");
         });
       } else {

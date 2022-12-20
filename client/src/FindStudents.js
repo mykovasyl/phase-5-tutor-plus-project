@@ -27,6 +27,9 @@ function FindStudents({ currentUser, students, setStudents }) {
     <>
       <h1>Find Your Student</h1>
       {displayStudents}
+      {errors.map((err) => {
+        return <div key={err}>{err}</div>;
+      })}
     </>
   );
 }
