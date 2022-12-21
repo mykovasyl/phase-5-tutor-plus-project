@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
+import { UserContext } from "./App";
 import { Link } from "react-router-dom";
 
-function NavBar({ currentUser, handleLogOut }) {
+function NavBar({ handleLogOut }) {
   const linkStyling = { padding: "10px" };
+  const { currentUser } = useContext(UserContext);
 
   function tutorLinks() {
     return (

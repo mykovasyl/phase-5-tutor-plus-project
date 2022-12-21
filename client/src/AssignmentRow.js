@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { UserContext } from "./App";
 import { FaTrashAlt, FaCheck } from "react-icons/fa";
 import Button from "react-bootstrap/Button";
 import { Form } from "react-bootstrap";
@@ -8,9 +9,11 @@ function AssignmentRow({
   name,
   subject,
   notes,
+  tutorId,
   assignments,
   setAssignments,
 }) {
+  const { currentUser } = useContext(UserContext);
   const [errors, setErrors] = useState([]);
   const [editing, setEditing] = useState(false);
   const [formData, setFormData] = useState({
@@ -73,11 +76,12 @@ function AssignmentRow({
                 <FaEdit />
               </Button>
             )} */}
-            <Button variant="danger">
-              <FaTrashAlt onClick={() => handleDelete(id)} />
-            </Button>
-            {/* <p timeout={50}>{errors}</p> 
-            how do I time this paragraph out? */}
+            {currentUser.id === tutorId ? (
+              <Button variant="danger">
+                <FaTrashAlt onClick={() => handleDelete(id)} />
+              </Button>
+            ) : null}
+            <p>{errors}</p>
           </td>
         </>
       );

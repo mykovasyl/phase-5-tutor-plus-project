@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+// import { UserContext } from "./App";
 import ReactModal from "react-modal";
 import { Link } from "react-router-dom";
 import Row from "react-bootstrap/Row";
@@ -6,7 +7,8 @@ import Col from "react-bootstrap/Col";
 import Table from "react-bootstrap/Table";
 import AssignmentRow from "./AssignmentRow";
 
-function Student({ student, setStudents }) {
+function Student({ student }) {
+  // const { currentUser } = useContext(UserContext);
   const [assignments, setAssignments] = useState(student.assignments);
   const [modalShow, setModalShow] = useState(false);
 
@@ -41,6 +43,7 @@ function Student({ student, setStudents }) {
         name={assignment.name}
         subject={assignment.subject}
         notes={assignment.notes}
+        tutorId={assignment.tutor_id}
       />
     );
   });

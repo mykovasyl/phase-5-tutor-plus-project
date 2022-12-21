@@ -21,7 +21,6 @@ class AssignmentsController < ApplicationController
   def destroy
     assignment_to_delete = find_assignment
     if assignment_to_delete.tutor_id == @current_user.id
-      byebug
       assignment_to_delete.destroy
       head :no_content
     else

@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { UserContext } from "./App";
 import { useNavigate } from "react-router-dom";
 import { FaCheck } from "react-icons/fa";
 import Button from "react-bootstrap/Button";
 import { Form } from "react-bootstrap";
 
-function Profile({ currentUser, setCurrentUser, setStudents }) {
+function Profile({ setCurrentUser, setStudents }) {
+  const { currentUser } = useContext(UserContext);
   const [editing, setEditing] = useState(false);
   const [formData, setFormData] = useState({
     name: currentUser.name,

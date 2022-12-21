@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
+// import { UserContext } from "./App";
 import Student from "./Student";
 
-function FindStudents({ currentUser, students, setStudents }) {
+function FindStudents({ setStudents }) {
   const [errors, setErrors] = useState([]);
   const [allStudents, setAllStudents] = useState([]);
+  // const { currentUser } = useContext(UserContext);
 
   useEffect(() => {
     fetch("/getstudents").then((resp) => {

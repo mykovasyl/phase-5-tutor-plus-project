@@ -7,12 +7,10 @@ class UsersController < ApplicationController
 
   # better to add tutor controller? will that carry association? how?
   def tutors_students 
-    students = all_users.select{|user| user.type == "Student"} 
-    students.
-    byebug
-
+    students = Student.all
     # filter students for only those not currently associated with tutor
-    render json: students, include: 'assignments.tutor', status: :ok
+    unassociated_students = students.select{|user| !user.tutors.include?(@current_user)} 
+    render json: unassociated_students, include: 'assignments.tutor', status: :ok
   end
 
   # def students_tutors
@@ -33,9 +31,9 @@ class UsersController < ApplicationController
 
   def update
     user_to_update = find_user
-    user_to_update.avatar.attach(params[:avatar])
+    # user_to_update.avatar.attach(params[:avatar])
     user_to_update.update!(update_user_params)
-    render json: user, status: :accepted
+    render json: user_to_update, status: :accepted
   end
 
   def destroy
@@ -55,7 +53,7 @@ class UsersController < ApplicationController
   end
 
   def update_user_params
-    params.permit(:username, :password, :password_confirmation, :avatar, :headline, :name, :email, :subjects, :grade)
+    params.permit(:avatar, :headline, :name, :email, :subjects, :grade)
   end
 
   def find_user

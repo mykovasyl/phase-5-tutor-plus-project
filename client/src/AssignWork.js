@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { UserContext } from "./App";
 import { useLocation, useNavigate } from "react-router-dom";
 
-function AssignWork({ currentUser, setStudents, students }) {
+function AssignWork({ setStudents, students }) {
   const [error, setError] = useState([]);
   const location = useLocation();
   const navigate = useNavigate();
   const { studentId } = location.state;
+  const { currentUser } = useContext(UserContext);
   // const [selectedFile, setSelectedFile] = useState(null);
   const [formData, setFormData] = useState({
     name: "",

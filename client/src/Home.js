@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
+import { UserContext } from "./App";
 import { Link } from "react-router-dom";
 
-function Home({ currentUser, handleLogOut }) {
+function Home({ handleLogOut }) {
+  const { currentUser } = useContext(UserContext);
   return (
     <div>
       <h1>Tutor Plus</h1>
