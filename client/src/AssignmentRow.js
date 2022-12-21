@@ -3,13 +3,37 @@ import { FaTrashAlt, FaCheck } from "react-icons/fa";
 import Button from "react-bootstrap/Button";
 import { Form } from "react-bootstrap";
 
-function AssignmentRow({ id, name, subject, notes, handleDelete }) {
+function AssignmentRow({
+  id,
+  name,
+  subject,
+  notes,
+  assignments,
+  setAssignments,
+}) {
+  const [errors, setErrors] = useState([]);
   const [editing, setEditing] = useState(false);
   const [formData, setFormData] = useState({
     name: name,
     subject: subject,
     notes: notes,
   });
+
+  function handleDelete(id) {
+    fetch(`/assignments/${id}`, {
+      method: "DELETE",
+    }).then((resp) => {
+      if (!resp.ok) {
+        resp.json().then((err) => {
+          setErrors(err.error);
+        });
+      } else {
+        setAssignments(
+          assignments.filter((assignment) => assignment.id !== id)
+        );
+      }
+    });
+  }
 
   function handleChange(e) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -52,6 +76,8 @@ function AssignmentRow({ id, name, subject, notes, handleDelete }) {
             <Button variant="danger">
               <FaTrashAlt onClick={() => handleDelete(id)} />
             </Button>
+            {/* <p timeout={50}>{errors}</p> 
+            how do I time this paragraph out? */}
           </td>
         </>
       );

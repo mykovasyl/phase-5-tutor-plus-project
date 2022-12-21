@@ -1,13 +1,13 @@
 class AssignmentsController < ApplicationController
   skip_before_action :authorize, only: :create
 
-  # def index
-  #   @assignments = assignment.all
-  # end
+  def index
+    all_tutors_assignments = assignment.select { |assignment| assignment.tutor_id == @current_user.id }
+    render json: all_tutors_assignments, status: :ok
+  end
 
   def create
     assignment = Assignment.create!(new_assignment_params)
-    # student = Student.find(params[:student_id])
     render json: assignment, include: 'student.assignments', status: :accepted
   end
 
@@ -20,8 +20,13 @@ class AssignmentsController < ApplicationController
 
   def destroy
     assignment_to_delete = find_assignment
-    assignment_to_delete.destroy
-    head :no_content
+    if assignment_to_delete.tutor_id == @current_user.id
+      byebug
+      assignment_to_delete.destroy
+      head :no_content
+    else
+    render json: { error: "You do not have permission to destroy this assignment." }, status: :unauthorized
+    end
   end
 
   private

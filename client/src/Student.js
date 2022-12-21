@@ -14,26 +14,33 @@ function Student({ student, setStudents }) {
     setModalShow(!modalShow);
   }
 
-  function handleDelete(id) {
-    fetch(`/assignments/${id}`, {
-      method: "DELETE",
-    });
-    const assignmentsAfterDelete = assignments.filter(
-      (assignment) => assignment.id !== id
-    );
-    setAssignments(assignmentsAfterDelete);
-  }
+  // function handleDelete(id) {
+  //   fetch(`/assignments/${id}`, {
+  //     method: "DELETE",
+  //   }).then((resp) => {
+  //     if (!resp.ok) {
+  //       resp.json().then((err) => {
+  //         setErrors(err.error);
+  //       });
+  //     } else {
+  //       setAssignments(
+  //         assignments.filter((assignment) => assignment.id !== id)
+  //       );
+  //     }
+  //   });
+  // }
 
   let assignmentsInProgress = assignments.map((assignment) => {
     return (
       <AssignmentRow
         key={assignment.id}
         // avatar={assignment.avatar}
+        assignments={assignments}
+        setAssignments={setAssignments}
         id={assignment.id}
         name={assignment.name}
         subject={assignment.subject}
         notes={assignment.notes}
-        handleDelete={handleDelete}
       />
     );
   });
