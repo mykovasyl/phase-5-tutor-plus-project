@@ -53,7 +53,7 @@ class UsersController < ApplicationController
   end
 
   def update_user_params
-    params.permit(:avatar, :headline, :name, :email, :subjects, :grade)
+    params.permit(:avatar, :headline, :subjects, :name, :grade, :email)
   end
 
   def find_user
