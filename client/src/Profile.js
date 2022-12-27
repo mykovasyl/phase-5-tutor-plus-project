@@ -8,11 +8,7 @@ import { Form } from "react-bootstrap";
 function Profile({ setCurrentUser, setStudents }) {
   const { currentUser } = useContext(UserContext);
   const [editing, setEditing] = useState(false);
-  const [formData, setFormData] = useState({
-    name: currentUser.name,
-    subjects: currentUser.subjects,
-    headline: currentUser.headline,
-  });
+  const [formData, setFormData] = useState({});
   const navigate = useNavigate();
 
   function handleChange(e) {
@@ -21,6 +17,11 @@ function Profile({ setCurrentUser, setStudents }) {
 
   function handleEdit() {
     setEditing(!editing);
+    setFormData({
+      name: currentUser.name,
+      subjects: currentUser.subjects,
+      headline: currentUser.headline,
+    });
   }
 
   function handleDelete() {
@@ -44,7 +45,7 @@ function Profile({ setCurrentUser, setStudents }) {
       .then((resp) => resp.json())
       .then((updatedUser) => {
         setCurrentUser(updatedUser);
-        setFormData({ ...formData, updatedUser });
+        setFormData({});
       });
   }
 
