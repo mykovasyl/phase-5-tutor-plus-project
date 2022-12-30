@@ -1,36 +1,19 @@
 import React, { useState } from "react";
-// import { UserContext } from "./App";
 import ReactModal from "react-modal";
 import { Link } from "react-router-dom";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Table from "react-bootstrap/Table";
 import AssignmentRow from "./AssignmentRow";
+import { Stack } from "react-bootstrap";
 
 function Student({ student }) {
-  // const { currentUser } = useContext(UserContext);
   const [assignments, setAssignments] = useState(student.assignments);
   const [modalShow, setModalShow] = useState(false);
 
   function handleModalShow() {
     setModalShow(!modalShow);
   }
-
-  // function handleDelete(id) {
-  //   fetch(`/assignments/${id}`, {
-  //     method: "DELETE",
-  //   }).then((resp) => {
-  //     if (!resp.ok) {
-  //       resp.json().then((err) => {
-  //         setErrors(err.error);
-  //       });
-  //     } else {
-  //       setAssignments(
-  //         assignments.filter((assignment) => assignment.id !== id)
-  //       );
-  //     }
-  //   });
-  // }
 
   let assignmentsInProgress = assignments.map((assignment) => {
     return (
@@ -63,12 +46,20 @@ function Student({ student }) {
         onRequestClose={handleModalShow}
         ariaHideApp={false}
       >
-        <h2>{student.name}</h2>
-        {/* <p>{student.avatar}</p> */}
-        <p>{student.subject}</p>
-        <Link to="/assignwork" state={{ studentId: student.id }}>
-          <button type="button">Assign Work</button>
-        </Link>
+        <Row>
+          <Stack direction="horizontal">
+            <h2>{student.name}</h2>
+            {/* <p>{student.avatar}</p> */}
+            <div className="ms-auto">
+              <button onClick={handleModalShow}>Close</button>
+            </div>
+          </Stack>
+        </Row>
+        <Row>
+          <Link to="/assignwork" state={{ studentId: student.id }}>
+            <button type="button">Assign Work</button>
+          </Link>
+        </Row>
         <div>
           <br></br>
           <Row>
@@ -87,23 +78,8 @@ function Student({ student }) {
                 <tbody>{assignmentsInProgress}</tbody>
               </Table>
             </Col>
-            {/* <Col md={6}>
-              <h5>Completed assignments ({assignments.length}):</h5>
-              <Table striped hover style={{ marginTop: "20px" }}>
-                <thead>
-                  <tr>
-                  <td>Name</td>
-                    <td>Subject</td>
-                    <td>Notes</td>
-                    <td>Link to download file</td>
-                  </tr>
-                </thead>
-                <tbody>{completedChoreRows}</tbody>
-              </Table>
-            </Col> */}
           </Row>
         </div>
-        <button onClick={handleModalShow}>Close</button>
       </ReactModal>
     </div>
   );

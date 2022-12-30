@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
-// import { UserContext } from "./App";
 import Student from "./Student";
+import { Stack } from "react-bootstrap";
 
 function FindStudents({ setStudents }) {
   const [errors, setErrors] = useState([]);
   const [allStudents, setAllStudents] = useState([]);
-  // const { currentUser } = useContext(UserContext);
 
   useEffect(() => {
     fetch("/getstudents").then((resp) => {
@@ -28,7 +27,9 @@ function FindStudents({ setStudents }) {
   return (
     <>
       <h1>Find Your Student</h1>
-      {displayStudents}
+      <Stack direction="horizontal" gap={2}>
+        {displayStudents}
+      </Stack>
       {errors.map((err) => {
         return <div key={err}>{err}</div>;
       })}
