@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
-// import { UserContext } from "./App";
+import { Container } from "react-bootstrap";
 import Student from "./Student";
 
 function FindStudents({ setStudents }) {
   const [errors, setErrors] = useState([]);
   const [allStudents, setAllStudents] = useState([]);
-  // const { currentUser } = useContext(UserContext);
 
   useEffect(() => {
     fetch("/getstudents").then((resp) => {
@@ -28,7 +27,7 @@ function FindStudents({ setStudents }) {
   return (
     <>
       <h1>Find Your Student</h1>
-      {displayStudents}
+      <Container className="flex-wrap">{displayStudents}</Container>
       {errors.map((err) => {
         return <div key={err}>{err}</div>;
       })}
