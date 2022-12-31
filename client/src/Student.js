@@ -5,7 +5,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Table from "react-bootstrap/Table";
 import AssignmentRow from "./AssignmentRow";
-import { Stack } from "react-bootstrap";
+import { CloseButton, Stack } from "react-bootstrap";
 
 function Student({ student }) {
   const [assignments, setAssignments] = useState(student.assignments);
@@ -51,7 +51,7 @@ function Student({ student }) {
             <h2>{student.name}</h2>
             {/* <p>{student.avatar}</p> */}
             <div className="ms-auto">
-              <button onClick={handleModalShow}>Close</button>
+              <CloseButton onClick={handleModalShow} />
             </div>
           </Stack>
         </Row>

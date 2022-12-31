@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { Container } from "react-bootstrap";
 import Student from "./Student";
-import { Stack } from "react-bootstrap";
 
 function FindStudents({ setStudents }) {
   const [errors, setErrors] = useState([]);
@@ -27,9 +27,7 @@ function FindStudents({ setStudents }) {
   return (
     <>
       <h1>Find Your Student</h1>
-      <Stack direction="horizontal" gap={2}>
-        {displayStudents}
-      </Stack>
+      <Container className="flex-wrap">{displayStudents}</Container>
       {errors.map((err) => {
         return <div key={err}>{err}</div>;
       })}
