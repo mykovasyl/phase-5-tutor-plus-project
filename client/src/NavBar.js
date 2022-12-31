@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { UserContext } from "./App";
 import { Link } from "react-router-dom";
-import { Container, Navbar } from "react-bootstrap";
+import { Container, Navbar, Row } from "react-bootstrap";
 import { Nav } from "react-bootstrap";
 
 function NavBar({ handleLogOut }) {
@@ -36,41 +36,43 @@ function NavBar({ handleLogOut }) {
   }
 
   return (
-    <Navbar bg="dark" variant="dark">
-      <Navbar.Brand
-        as={Link}
-        to="/"
-        style={{ paddingLeft: "15px", color: "white" }}
-      >
-        Tutor Plus
-      </Navbar.Brand>
-      {/* check if tutor or student, display proper links */}
-      {currentUser.type === "Tutor"
-        ? tutorLinks()
-        : currentUser.type === "Student"
-        ? studentLinks()
-        : null}
-      {/* check if logged in, display proper buttons */}
-      <Container className="justify-content-end">
-        {currentUser.type ? (
-          <>
-            <Nav.Link as={Link} to="/profile" style={linkStyling}>
-              <button>Profile</button>
-            </Nav.Link>
-            <button onClick={handleLogOut}>Log out</button>
-          </>
-        ) : (
-          <>
-            <Nav.Link as={Link} to="/login" style={linkStyling}>
-              Log in
-            </Nav.Link>
-            <Nav.Link as={Link} to="/signup" style={linkStyling}>
-              Sign up
-            </Nav.Link>
-          </>
-        )}
-      </Container>
-    </Navbar>
+    <Row>
+      <Navbar bg="dark" variant="dark">
+        <Navbar.Brand
+          as={Link}
+          to="/"
+          style={{ paddingLeft: "15px", color: "white" }}
+        >
+          Tutor Plus
+        </Navbar.Brand>
+        {/* check if tutor or student, display proper links */}
+        {currentUser.type === "Tutor"
+          ? tutorLinks()
+          : currentUser.type === "Student"
+          ? studentLinks()
+          : null}
+        {/* check if logged in, display proper buttons */}
+        <Container className="justify-content-end">
+          {currentUser.type ? (
+            <>
+              <Nav.Link as={Link} to="/profile" style={linkStyling}>
+                <button>Profile</button>
+              </Nav.Link>
+              <button onClick={handleLogOut}>Log out</button>
+            </>
+          ) : (
+            <>
+              <Nav.Link as={Link} to="/login" style={linkStyling}>
+                Log in
+              </Nav.Link>
+              <Nav.Link as={Link} to="/signup" style={linkStyling}>
+                Sign up
+              </Nav.Link>
+            </>
+          )}
+        </Container>
+      </Navbar>
+    </Row>
   );
 }
 
