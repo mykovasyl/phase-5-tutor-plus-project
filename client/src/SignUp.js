@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Button, Container } from "react-bootstrap";
+import { Button, Container, Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import Form from "react-bootstrap/Form";
 
 function SignUp() {
   const [error, setError] = useState([]);
@@ -54,136 +55,141 @@ function SignUp() {
           width: "75%",
         }}
       >
-        <h1>Join our growing family of tutors and students!</h1>
-        <form onSubmit={handleSubmit}>
-          <label>
-            Choose a username:
-            <input
-              name="username"
-              type="text"
-              placeholder="Username"
-              value={signupForm.username}
-              onChange={handleInputChange}
-            />
-          </label>
-          <label>
-            Enter your email:
-            <input
-              name="email"
-              type="text"
-              placeholder="email@example.com"
-              value={signupForm.email}
-              onChange={handleInputChange}
-            />
-          </label>
-          <label>
-            Create a password:
-            <input
-              name="password"
-              type="password"
-              placeholder="Password"
-              value={signupForm.password}
-              onChange={handleInputChange}
-            />
-          </label>
-          <label>
-            Confirm password:
-            <input
-              name="password_confirmation"
-              type="password"
-              placeholder="Confirm password"
-              value={signupForm.password_confirmation}
-              onChange={handleInputChange}
-            />
-          </label>
+        <h2>Join our growing family of tutors and students!</h2>
+        <Form onSubmit={handleSubmit}>
+          <Row>
+            <Col>
+              <Form.Label>Username:</Form.Label>
+              <Form.Control
+                name="username"
+                type="username"
+                value={signupForm.username}
+                onChange={handleInputChange}
+              />
+            </Col>
+            <Col>
+              <Form.Label>Email address</Form.Label>
+              <Form.Control
+                name="email"
+                type="email"
+                placeholder="name@example.com"
+                value={signupForm.email}
+                onChange={handleInputChange}
+              />
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <Form.Label>Password</Form.Label>
+              <Form.Control
+                name="password"
+                type="password"
+                value={signupForm.password}
+                onChange={handleInputChange}
+              />
+              <Form.Text muted>
+                Your password must be 8-20 characters long, contain letters and
+                numbers, and must not contain spaces, special characters, or
+                emoji.
+              </Form.Text>
+            </Col>
+            <Col>
+              <Form.Label>Confirm password:</Form.Label>
+              <Form.Control
+                name="password_confirmation"
+                type="password"
+                value={signupForm.password_confirmation}
+                onChange={handleInputChange}
+              />
+            </Col>
+          </Row>
           <p>
             Are you signing up as a tutor or student?
-            <label>
-              <input
-                type="radio"
-                name="type"
-                value="Student"
-                checked={signupForm.type === "Student"}
-                onChange={handleOptionChange}
-              />
-              Student
-            </label>
-            <label>
-              <input
-                type="radio"
-                name="type"
-                value="Tutor"
-                checked={signupForm.type === "Tutor"}
-                onChange={handleOptionChange}
-              />
-              Tutor
-            </label>
+            <br />
+            <Form.Check
+              inline
+              label="Student"
+              name="type"
+              value="Student"
+              type="radio"
+              checked={signupForm.type === "Student"}
+              onChange={handleOptionChange}
+            />
+            <Form.Check
+              inline
+              label="Tutor"
+              name="type"
+              value="Tutor"
+              type="radio"
+              checked={signupForm.type === "Tutor"}
+              onChange={handleOptionChange}
+            />
           </p>
           {/* tutor or student signup options */}
           {signupForm.type === "Tutor" ? (
             <>
-              <label>
-                Full name:
-                <input
-                  name="name"
-                  type="text"
-                  placeholder="Name"
-                  value={signupForm.name}
-                  onChange={handleInputChange}
-                />
-              </label>
-              <label>
-                Subjects:
-                <input
-                  name="subjects"
-                  type="text"
-                  placeholder="Subjects"
-                  value={signupForm.subjects}
-                  onChange={handleInputChange}
-                />
-              </label>
-              <label>
-                Choose a headline:
-                <input
-                  name="headline"
-                  type="text"
-                  placeholder="Headline"
-                  value={signupForm.headline}
-                  onChange={handleInputChange}
-                />
-              </label>
+              <Row>
+                <Col>
+                  <Form.Label>Full name:</Form.Label>
+                  <Form.Control
+                    name="name"
+                    type="text"
+                    value={signupForm.name}
+                    onChange={handleInputChange}
+                  />
+                </Col>
+                <Col>
+                  <Form.Label>Subjects:</Form.Label>
+                  <Form.Control
+                    name="subjects"
+                    type="text"
+                    value={signupForm.subjects}
+                    onChange={handleInputChange}
+                  />
+                </Col>
+                <Col>
+                  <Form.Label>Headline:</Form.Label>
+                  <Form.Control
+                    name="headline"
+                    type="text"
+                    value={signupForm.headline}
+                    onChange={handleInputChange}
+                  />
+                </Col>
+              </Row>
             </>
           ) : signupForm.type === "Student" ? (
             <>
-              <label>
-                Full name:
-                <input
-                  name="name"
-                  type="text"
-                  placeholder="Name"
-                  value={signupForm.name}
-                  onChange={handleInputChange}
-                />
-              </label>
-              <label>
-                Grade:
-                <input
-                  name="grade"
-                  type="text"
-                  placeholder="Grade"
-                  value={signupForm.grade}
-                  onChange={handleInputChange}
-                />
-              </label>
+              <Row>
+                <Col>
+                  <Form.Label>Full name:</Form.Label>
+                  <Form.Control
+                    name="name"
+                    type="text"
+                    value={signupForm.name}
+                    onChange={handleInputChange}
+                  />
+                </Col>
+                <Col>
+                  <Form.Label>Grade:</Form.Label>
+                  <Form.Control
+                    name="grade"
+                    type="text"
+                    value={signupForm.grade}
+                    onChange={handleInputChange}
+                  />
+                </Col>
+              </Row>
             </>
           ) : null}
+          <br />
           <Button type="submit" variant="success">
             Sign up!
           </Button>
           {error.map((err) => {
             return <h4>{err}</h4>;
           })}
-        </form>
+        </Form>
       </Container>
     </div>
   );

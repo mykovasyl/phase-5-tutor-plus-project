@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Form, Button, Col, Row, Container } from "react-bootstrap";
 
 function LogIn({ setCurrentUser, setStudents }) {
   const [login, setLogin] = useState({
@@ -32,32 +33,42 @@ function LogIn({ setCurrentUser, setStudents }) {
   }
 
   return (
-    <div>
-      <h1>Log in here:</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Username:
-          <input
-            type="text"
-            name="username"
-            placeholder="Username"
-            value={login.username}
-            onChange={handleInputChange}
-          />
-        </label>
-        <label>
-          Password:
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            value={login.password}
-            onChange={handleInputChange}
-          />
-        </label>
-        <button type="submit">Log In</button>
-      </form>
-    </div>
+    <Container
+      style={{
+        marginTop: "24px",
+        padding: "20px",
+        border: ".5px solid grey",
+        borderRadius: "8px",
+        width: "75%",
+      }}
+    >
+      <h2>Log in:</h2>
+      <Form onSubmit={handleSubmit}>
+        <Row>
+          <Col>
+            <Form.Label>Username:</Form.Label>
+            <Form.Control
+              type="text"
+              name="username"
+              value={login.username}
+              onChange={handleInputChange}
+            />
+          </Col>
+          <Col>
+            <Form.Label>Subjects:</Form.Label>
+            <Form.Control
+              type="password"
+              name="password"
+              value={login.password}
+              onChange={handleInputChange}
+            />
+          </Col>
+        </Row>
+        <Button type="submit" variant="success" style={{ margin: "16px" }}>
+          Log in!
+        </Button>
+      </Form>
+    </Container>
   );
 }
 
