@@ -52,11 +52,7 @@ function App() {
       <UserContext.Provider value={{ currentUser }}>
         <NavBar handleLogOut={handleLogOut} />
         <Routes>
-          <Route
-            exact
-            path="/"
-            element={<Home handleLogOut={handleLogOut} errors={errors} />}
-          />
+          <Route exact path="/" element={<Home />} />
           {/* student is logged in */}
           {/* <Route path="/tutors">
           <TutorList />

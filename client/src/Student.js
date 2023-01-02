@@ -32,10 +32,15 @@ function Student({ student }) {
   });
 
   return (
-    <div>
+    <div style={{ width: "33%" }}>
       <button
         onClick={handleModalShow}
-        style={{ marginBottom: "10px" }}
+        style={{
+          marginBottom: "16px",
+          borderRadius: "8px",
+          boxShadow:
+            "rgb(0 0 0 / 3%) 0px -1px 0px 0px, rgb(0 0 0 / 16%) 0px 2px 8px 0px, rgb(0 0 0 / 16%) 0px 10px 8px -5px, rgb(0 0 0 / 16%) 0px 12px 32px -2px",
+        }}
         type="button"
       >
         <h2>{student.name}</h2>
@@ -55,17 +60,15 @@ function Student({ student }) {
             </div>
           </Stack>
         </Row>
-        <Row>
-          <Link to="/assignwork" state={{ studentId: student.id }}>
-            <button type="button">Assign Work</button>
-          </Link>
-        </Row>
+        <Link to="/assignwork" state={{ studentId: student.id }}>
+          <button type="button">Assign Work</button>
+        </Link>
         <div>
           <br></br>
           <Row>
             <Col>
               <h5>Assignments ({assignments.length}):</h5>
-              <Table striped hover style={{ marginTop: "20px" }}>
+              <Table striped hover style={{ marginTop: "24px" }}>
                 <thead>
                   <tr>
                     <td>Name</td>

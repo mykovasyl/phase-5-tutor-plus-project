@@ -1,22 +1,32 @@
 import React from "react";
+import { Container, Row } from "react-bootstrap";
 import Student from "./Student";
 
 function Students({ students, setStudents }) {
-  // let studentsList = [
-  //   ...new Map(students.map((student) => [student["id"], student])).values(),
-  // ];
   return (
     <div>
-      <h1>Your students</h1>
-      {students.map((student) => {
-        return (
-          <Student
-            key={student.id}
-            student={student}
-            setStudents={setStudents}
-          />
-        );
-      })}
+      <Container
+        style={{
+          marginTop: "24px",
+          padding: "20px",
+          border: ".5px solid grey",
+          borderRadius: "8px",
+          width: "75%",
+        }}
+      >
+        <h2>Your students</h2>
+        <Row>
+          {students.map((student) => {
+            return (
+              <Student
+                key={student.id}
+                student={student}
+                setStudents={setStudents}
+              />
+            );
+          })}
+        </Row>
+      </Container>
     </div>
   );
 }

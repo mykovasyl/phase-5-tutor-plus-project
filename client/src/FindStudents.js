@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Container } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
 import Student from "./Student";
 
 function FindStudents({ setStudents }) {
@@ -26,11 +26,21 @@ function FindStudents({ setStudents }) {
 
   return (
     <>
-      <h1>Find Your Student</h1>
-      <Container className="flex-wrap">{displayStudents}</Container>
-      {errors.map((err) => {
-        return <div key={err}>{err}</div>;
-      })}
+      <Container
+        style={{
+          marginTop: "24px",
+          padding: "24px",
+          border: ".5px solid grey",
+          borderRadius: "8px",
+          width: "75%",
+        }}
+      >
+        <h2>Find Your Student</h2>
+        <Row>{displayStudents}</Row>
+        {errors.map((err) => {
+          return <div key={err}>{err}</div>;
+        })}
+      </Container>
     </>
   );
 }

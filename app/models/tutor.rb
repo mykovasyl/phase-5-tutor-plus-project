@@ -6,5 +6,5 @@ class Tutor < User
   validates :name, presence: true
   
   validates :grade, absence: true
-
+  
 end

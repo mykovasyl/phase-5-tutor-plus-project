@@ -3,7 +3,7 @@ import { UserContext } from "./App";
 import { useNavigate } from "react-router-dom";
 import { FaCheck } from "react-icons/fa";
 import Button from "react-bootstrap/Button";
-import { Form } from "react-bootstrap";
+import { Container, Form } from "react-bootstrap";
 
 function Profile({ setCurrentUser, setStudents }) {
   const { currentUser } = useContext(UserContext);
@@ -52,67 +52,80 @@ function Profile({ setCurrentUser, setStudents }) {
   function tableDataOrInputs() {
     if (!editing) {
       return (
-        <>
-          <td>{currentUser.name}</td>
+        <Container>
+          <p>{currentUser.name}</p>
           <br />
-          {/* <td>{currentUser.avatar}</td>
+          {/* <p>{currentUser.avatar}</p>
           <br /> */}
-          <td>{currentUser.subjects}</td>
+          <p>{currentUser.subjects}</p>
           <br />
-          <td>{currentUser.headline}</td>
+          <p>{currentUser.headline}</p>
           <br />
-          <td>
-            <Button variant="warning" onClick={handleEdit}>
+          <p>
+            <Button
+              variant="warning"
+              onClick={handleEdit}
+              style={{ marginRight: "16px" }}
+            >
               Edit Profile
             </Button>
             <Button variant="danger" onClick={handleDelete}>
               Delete Account
             </Button>
-          </td>
-        </>
+          </p>
+        </Container>
       );
     } else {
       return (
-        <>
-          <td>
+        <Container style={{ width: "30%" }}>
+          <p>
             <Form.Control
               type="text"
               name="name"
               value={formData.name}
               onChange={handleChange}
             ></Form.Control>
-          </td>
-          <td>
+          </p>
+          <p>
             <Form.Control
               type="text"
               name="subjects"
               value={formData.subjects}
               onChange={handleChange}
             ></Form.Control>
-          </td>
-          <td>
+          </p>
+          <p>
             <Form.Control
               type="text"
               name="headline"
               value={formData.headline}
               onChange={handleChange}
             ></Form.Control>
-          </td>
-          <td>
+          </p>
+          <p>
             <Button variant="success" onClick={handleUpdate}>
               <FaCheck />
             </Button>
-          </td>
-        </>
+          </p>
+        </Container>
       );
     }
   }
 
   return (
-    <>
-      <h3>Profile</h3>
+    <Container
+      style={{
+        marginTop: "24px",
+        padding: "20px",
+        border: ".5px solid grey",
+        borderRadius: "8px",
+        width: "75%",
+      }}
+    >
+      <h2>Profile</h2>
+      <br />
       {tableDataOrInputs()}
-    </>
+    </Container>
   );
 }
 

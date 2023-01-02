@@ -1,30 +1,45 @@
+// make into a dashboard for recent updates to assignments
+
 import React, { useContext } from "react";
 import { UserContext } from "./App";
 import { Link } from "react-router-dom";
+import { Container, Nav, Button } from "react-bootstrap";
 
-function Home({ handleLogOut }) {
+function Home() {
   const { currentUser } = useContext(UserContext);
+  const linkStyling = { color: "white", whiteSpace: "nowrap" };
   return (
     <div>
-      <h1>Tutor Plus</h1>
-      <h3>An application for assigning homework to your students!</h3>
-      <p>
-        Upload homework for students to complete. They will be able to download
-        it and upload back the completed version.
-      </p>
-      {Object.keys(currentUser).length !== 0 ? (
-        <>
-          <p>Welcome back, {currentUser.name}</p>
-          <button onClick={handleLogOut}>Log out</button>
-        </>
-      ) : (
-        <>
-          <Link to="signup" style={{ marginRight: "10px" }}>
-            Sign up today!
-          </Link>
-          <Link to="login">Log in</Link>
-        </>
-      )}
+      <Container
+        style={{
+          marginTop: "24px",
+          padding: "20px",
+          border: ".5px solid grey",
+          borderRadius: "8px",
+          width: "75%",
+        }}
+      >
+        <h1>Tutor Plus</h1>
+        <h3>An application for assigning homework to your students!</h3>
+        <p>Upload homework for students to complete.</p>
+        {Object.keys(currentUser).length !== 0 ? (
+          <>
+            <p>Welcome back, {currentUser.name}</p>
+          </>
+        ) : (
+          <>
+            <Nav.Link
+              as={Link}
+              to="/signup"
+              style={{ ...linkStyling, marginRight: "10px" }}
+            >
+              <Button variant="warning">
+                <div>Sign up today!</div>
+              </Button>
+            </Nav.Link>
+          </>
+        )}
+      </Container>
     </div>
   );
 }
