@@ -96,7 +96,8 @@ function Profile({ setCurrentUser, setStudents }) {
           </p>
           <p>
             <Form.Control
-              type="text"
+              as="textarea"
+              rows={3}
               name="headline"
               value={formData.headline}
               onChange={handleChange}

@@ -68,7 +68,7 @@ function SignUp() {
         <Form onSubmit={handleSubmit}>
           <Row>
             <Col>
-              <Form.Label>Username:</Form.Label>
+              <Form.Label>Username</Form.Label>
               <Form.Control
                 name="username"
                 type="username"
@@ -103,7 +103,7 @@ function SignUp() {
               </Form.Text>
             </Col>
             <Col>
-              <Form.Label>Confirm password:</Form.Label>
+              <Form.Label>Confirm password</Form.Label>
               <Form.Control
                 name="password_confirmation"
                 type="password"
@@ -139,7 +139,7 @@ function SignUp() {
             <>
               <Row>
                 <Col>
-                  <Form.Label>Full name:</Form.Label>
+                  <Form.Label>Full name</Form.Label>
                   <Form.Control
                     name="name"
                     type="text"
@@ -148,7 +148,7 @@ function SignUp() {
                   />
                 </Col>
                 <Col>
-                  <Form.Label>Subjects:</Form.Label>
+                  <Form.Label>Subjects</Form.Label>
                   <Form.Control
                     name="subjects"
                     type="text"
@@ -157,7 +157,7 @@ function SignUp() {
                   />
                 </Col>
                 <Col>
-                  <Form.Label>Headline:</Form.Label>
+                  <Form.Label>Headline</Form.Label>
                   <Form.Control
                     name="headline"
                     type="text"

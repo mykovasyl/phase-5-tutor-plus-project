@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import { UserContext } from "./App";
 import { useLocation, useNavigate } from "react-router-dom";
+import { Container, Form, Row, Col, Button } from "react-bootstrap";
 
 function AssignWork({ setStudents, students }) {
   const [error, setError] = useState([]);
@@ -59,43 +60,71 @@ function AssignWork({ setStudents, students }) {
   }
 
   return (
-    <form onSubmit={onFormSubmit}>
-      <label>
-        Name:
-        <input
-          type="text"
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-        />
-      </label>
-      <label>
-        Subject:
-        <input
-          type="text"
-          name="subject"
-          value={formData.subject}
-          onChange={handleChange}
-        />
-      </label>
-      <label>
-        Notes:
-        <input
-          type="text"
-          name="notes"
-          value={formData.notes}
-          onChange={handleChange}
-        />
-      </label>
-      {/* <label>
+    <Container
+      style={{
+        marginTop: "24px",
+        padding: "24px",
+        border: ".5px solid grey",
+        borderRadius: "8px",
+        width: "75%",
+      }}
+    >
+      <h2
+        style={{
+          border: ".5px solid grey",
+          marginBottom: "24px",
+          borderRadius: "8px",
+          padding: "8px",
+        }}
+      >
+        Assignment
+      </h2>
+      <Form onSubmit={onFormSubmit}>
+        <Row>
+          <Col>
+            <Form.Label>Name:</Form.Label>
+            <Form.Control
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+            />
+          </Col>
+          <Col>
+            <Form.Label>Subject:</Form.Label>
+            <Form.Control
+              type="text"
+              name="subject"
+              value={formData.subject}
+              onChange={handleChange}
+            />
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <Form.Label>Notes:</Form.Label>
+            <Form.Control
+              as="textarea"
+              name="notes"
+              value={formData.notes}
+              onChange={handleChange}
+            />
+          </Col>
+        </Row>
+        {/* <label>
         Select a file:
         <input type="file" onChange={onFileChange} />
       </label> */}
-      <button type="submit">Upload</button>
-      {error.map((error) => {
-        return <p key={error}>{error}</p>;
-      })}
-    </form>
+        <Row style={{ margin: "8px" }}>
+          <Button type="submit" variant="success">
+            Upload
+          </Button>
+        </Row>
+        {error.map((error) => {
+          return <p key={error}>{error}</p>;
+        })}
+      </Form>
+    </Container>
   );
 }
 
