@@ -10,8 +10,8 @@ function AssignmentRow({
   subject,
   notes,
   tutorId,
-  assignments,
-  setAssignments,
+  studentId,
+  setStudents,
 }) {
   const { currentUser } = useContext(UserContext);
   const [errors, setErrors] = useState([]);
@@ -31,9 +31,17 @@ function AssignmentRow({
           setErrors(err.error);
         });
       } else {
-        setAssignments(
-          assignments.filter((assignment) => assignment.id !== id)
-        );
+        setStudents((prevStudents) => {
+          const newStudents = prevStudents.map((student) => {
+            if (student.id === studentId) {
+              student.assignments = student.assignments.filter(
+                (assignment) => assignment.id !== id
+              );
+            }
+            return student;
+          });
+          return newStudents;
+        });
       }
     });
   }
@@ -77,9 +85,9 @@ function AssignmentRow({
               </Button>
             )} */}
             {currentUser.id === tutorId ? (
-              <Button variant="danger">
+              <button variant="danger">
                 <FaTrashAlt onClick={() => handleDelete(id)} />
-              </Button>
+              </button>
             ) : null}
             <p>{errors}</p>
           </td>

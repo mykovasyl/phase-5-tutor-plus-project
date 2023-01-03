@@ -7,26 +7,27 @@ import Table from "react-bootstrap/Table";
 import AssignmentRow from "./AssignmentRow";
 import { Button, CloseButton, Stack } from "react-bootstrap";
 
-function Student({ student }) {
-  const [assignments, setAssignments] = useState(student.assignments);
+function Student({ student, setStudents }) {
+  // const [assignments, setAssignments] = useState(student.assignments);
   const [modalShow, setModalShow] = useState(false);
 
   function handleModalShow() {
     setModalShow(!modalShow);
   }
 
-  let assignmentsInProgress = assignments.map((assignment) => {
+  let assignmentsInProgress = student.assignments.map((assignment) => {
     return (
       <AssignmentRow
         key={assignment.id}
         // avatar={assignment.avatar}
-        assignments={assignments}
-        setAssignments={setAssignments}
+        assignments={student.assignments}
+        setStudents={setStudents}
         id={assignment.id}
         name={assignment.name}
         subject={assignment.subject}
         notes={assignment.notes}
         tutorId={assignment.tutor_id}
+        studentId={assignment.student_id}
       />
     );
   });
@@ -72,7 +73,7 @@ function Student({ student }) {
           <br></br>
           <Row>
             <Col>
-              <h5>Assignments ({assignments.length}):</h5>
+              <h5>Assignments ({student.assignments.length}):</h5>
               <Table striped hover style={{ marginTop: "24px" }}>
                 <thead>
                   <tr>

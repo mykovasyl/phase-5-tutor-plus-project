@@ -24,17 +24,20 @@ function Students({ students, setStudents }) {
         >
           Your students
         </h2>
-        <Row>
-          {students.map((student) => {
-            return (
-              <Student
-                key={student.id}
-                student={student}
-                setStudents={setStudents}
-              />
-            );
-          })}
-        </Row>
+
+        {students && (
+          <Row>
+            {students.map((student) => {
+              return (
+                <Student
+                  key={student.id}
+                  student={student}
+                  setStudents={setStudents}
+                />
+              );
+            })}
+          </Row>
+        )}
       </Container>
     </>
   );
