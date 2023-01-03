@@ -63,13 +63,11 @@ function Student({ student }) {
             </div>
           </Stack>
         </Row>
-        <Row style={{ marginTop: "16px" }}>
-          <Link to="/assignwork" state={{ studentId: student.id }}>
-            <Button type="button" variant="primary">
-              Assign Work
-            </Button>
-          </Link>
-        </Row>
+        <Link to="/assignwork" state={{ studentId: student.id }}>
+          <Button type="button" variant="primary">
+            Assign Work
+          </Button>
+        </Link>
         <div>
           <br></br>
           <Row>

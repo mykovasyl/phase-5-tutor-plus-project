@@ -8,7 +8,8 @@ class AssignmentsController < ApplicationController
 
   def create
     assignment = Assignment.create!(new_assignment_params)
-    render json: assignment, include: 'student.assignments', status: :accepted
+    render json: assignment, include: 'tutor.students.assignments', status: :created
+    # render json: assignment, include: 'student.assignments', status: :created
   end
 
   # def update

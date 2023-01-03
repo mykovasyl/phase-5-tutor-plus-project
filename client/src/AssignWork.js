@@ -42,7 +42,16 @@ function AssignWork({ setStudents, students }) {
       if (resp.ok) {
         resp.json().then((newAssignment) => {
           console.log(newAssignment);
-          setStudents([...students, newAssignment.student]);
+          let studentsList = [
+            ...new Map(
+              newAssignment.tutor.students.map((student) => [
+                student["id"],
+                student,
+              ])
+            ).values(),
+          ];
+          setStudents(studentsList);
+          // setStudents([...students, newAssignment.student]);
           // setFormData({
           //   name: "",
           //   notes: "",

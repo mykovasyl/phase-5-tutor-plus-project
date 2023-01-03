@@ -28,8 +28,8 @@ function Profile({ setCurrentUser, setStudents }) {
     fetch(`/users/${currentUser.id}`, {
       method: "DELETE",
     });
-    setCurrentUser(null);
-    setStudents(null);
+    setCurrentUser({});
+    setStudents([]);
     navigate("/");
   }
 
