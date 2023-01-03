@@ -116,13 +116,22 @@ function Profile({ setCurrentUser, setStudents }) {
     <Container
       style={{
         marginTop: "24px",
-        padding: "20px",
+        padding: "24px",
         border: ".5px solid grey",
         borderRadius: "8px",
         width: "75%",
       }}
     >
-      <h2>Profile</h2>
+      <h2
+        style={{
+          border: ".5px solid grey",
+          marginBottom: "24px",
+          borderRadius: "8px",
+          padding: "8px",
+        }}
+      >
+        Profile
+      </h2>
       <br />
       {tableDataOrInputs()}
     </Container>

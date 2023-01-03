@@ -5,7 +5,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Table from "react-bootstrap/Table";
 import AssignmentRow from "./AssignmentRow";
-import { CloseButton, Stack } from "react-bootstrap";
+import { Button, CloseButton, Stack } from "react-bootstrap";
 
 function Student({ student }) {
   const [assignments, setAssignments] = useState(student.assignments);
@@ -32,12 +32,15 @@ function Student({ student }) {
   });
 
   return (
-    <div style={{ width: "33%" }}>
-      <button
+    <div style={{ width: "33.3%" }}>
+      <Button
+        variant="outline-dark"
         onClick={handleModalShow}
         style={{
           marginBottom: "16px",
           borderRadius: "8px",
+          width: "100%",
+          height: "80%",
           boxShadow:
             "rgb(0 0 0 / 3%) 0px -1px 0px 0px, rgb(0 0 0 / 16%) 0px 2px 8px 0px, rgb(0 0 0 / 16%) 0px 10px 8px -5px, rgb(0 0 0 / 16%) 0px 12px 32px -2px",
         }}
@@ -45,7 +48,7 @@ function Student({ student }) {
       >
         <h2>{student.name}</h2>
         {/* <p>{student.avatar}</p> */}
-      </button>
+      </Button>
       <ReactModal
         isOpen={modalShow}
         onRequestClose={handleModalShow}
@@ -60,9 +63,13 @@ function Student({ student }) {
             </div>
           </Stack>
         </Row>
-        <Link to="/assignwork" state={{ studentId: student.id }}>
-          <button type="button">Assign Work</button>
-        </Link>
+        <Row style={{ marginTop: "16px" }}>
+          <Link to="/assignwork" state={{ studentId: student.id }}>
+            <Button type="button" variant="primary">
+              Assign Work
+            </Button>
+          </Link>
+        </Row>
         <div>
           <br></br>
           <Row>

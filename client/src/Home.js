@@ -13,13 +13,22 @@ function Home() {
       <Container
         style={{
           marginTop: "24px",
-          padding: "20px",
+          padding: "24px",
           border: ".5px solid grey",
           borderRadius: "8px",
           width: "75%",
         }}
       >
-        <h1>Tutor Plus</h1>
+        <h1
+          style={{
+            border: ".5px solid grey",
+            marginBottom: "24px",
+            borderRadius: "8px",
+            padding: "8px",
+          }}
+        >
+          Tutor Plus
+        </h1>
         <h3>An application for assigning homework to your students!</h3>
         <p>Upload homework for students to complete.</p>
         {Object.keys(currentUser).length !== 0 ? (

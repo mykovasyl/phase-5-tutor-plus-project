@@ -36,13 +36,22 @@ function LogIn({ setCurrentUser, setStudents }) {
     <Container
       style={{
         marginTop: "24px",
-        padding: "20px",
+        padding: "24px",
         border: ".5px solid grey",
         borderRadius: "8px",
         width: "75%",
       }}
     >
-      <h2>Log in:</h2>
+      <h2
+        style={{
+          border: ".5px solid grey",
+          marginBottom: "24px",
+          borderRadius: "8px",
+          padding: "8px",
+        }}
+      >
+        Log in:
+      </h2>
       <Form onSubmit={handleSubmit}>
         <Row>
           <Col>
@@ -55,7 +64,7 @@ function LogIn({ setCurrentUser, setStudents }) {
             />
           </Col>
           <Col>
-            <Form.Label>Subjects:</Form.Label>
+            <Form.Label>Password:</Form.Label>
             <Form.Control
               type="password"
               name="password"

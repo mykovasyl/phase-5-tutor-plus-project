@@ -35,7 +35,16 @@ function FindStudents({ setStudents }) {
           width: "75%",
         }}
       >
-        <h2>Find Your Student</h2>
+        <h2
+          style={{
+            border: ".5px solid grey",
+            marginBottom: "24px",
+            borderRadius: "8px",
+            padding: "8px",
+          }}
+        >
+          Find Your Student
+        </h2>
         <Row>{displayStudents}</Row>
         {errors.map((err) => {
           return <div key={err}>{err}</div>;
