@@ -5,6 +5,7 @@
 Tutor Plus is an application built with simplicity in mind. It provides tutors a way to assign homework to their students and for students to be able to view the homework, download it, complete it and upload it back for the tutor to check. This simple organizational tool takes all the stress out of remembering who had what assignment and who completed them.
 
 [Video walkthrough](https://youtu.be/syS3NQz1lzk): demonstration of the application on the front end.
+
 [Associated blog post](https://medium.com/@mykovasyl/tutor-plus-ruby-on-rails-4960a37c3ae2): here I talk about the backend associations between the Tutor and Student models which includes STI, User 'type', and subclass associations.
 
 **Note on routing**: react-router-dom v6 was used. When changing front-end Routes, please double check your syntax. For more information, [check out this blog](https://blog.webdevsimplified.com/2022-07/react-router/)
