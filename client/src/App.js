@@ -9,6 +9,7 @@ import AssignWork from "./AssignWork";
 import SignUp from "./SignUp";
 import LogIn from "./LogIn";
 import Profile from "./Profile";
+import { Container } from "react-bootstrap";
 
 export const UserContext = createContext();
 
@@ -51,69 +52,73 @@ function App() {
     <div className="App">
       <UserContext.Provider value={{ currentUser }}>
         <NavBar handleLogOut={handleLogOut} />
-        <Routes>
-          <Route exact path="/" element={<Home />} />
-          {/* student is logged in */}
-          {/* <Route path="/tutors">
+        <div>
+          <Routes>
+            <Route exact path="/" element={<Home />} />
+            {/* student is logged in */}
+            {/* <Route path="/tutors">
           <TutorList />
         </Route>
         <Route path="/assignments">
           <AssignmentsList />
         </Route> */}
-          {/* tutor is logged in */}
-          <Route
-            path="/students"
-            element={<Students students={students} setStudents={setStudents} />}
-          />
-          <Route
-            path="/assignwork"
-            element={
-              <AssignWork students={students} setStudents={setStudents} />
-            }
-          />
-          <Route
-            path="/findstudents"
-            element={
-              <FindStudents students={students} setStudents={setStudents} />
-            }
-          />
-          {/* <Route
+            {/* tutor is logged in */}
+            <Route
+              path="/students"
+              element={
+                <Students students={students} setStudents={setStudents} />
+              }
+            />
+            <Route
+              path="/assignwork"
+              element={
+                <AssignWork students={students} setStudents={setStudents} />
+              }
+            />
+            <Route
+              path="/findstudents"
+              element={
+                <FindStudents students={students} setStudents={setStudents} />
+              }
+            />
+            {/* <Route
           path="/assignments"
           element={
             <AssignmentsList students={students} setStudents={setStudents} />
           }
         /> */}
-          <Route
-            path="/profile"
-            element={
-              <Profile
-                setCurrentUser={setCurrentUser}
-                setStudents={setStudents}
-              />
-            }
-          />
-          <Route
-            path="/signup"
-            element={<SignUp setCurrentUser={setCurrentUser} />}
-          />
-          <Route
-            path="/login"
-            element={
-              <LogIn
-                setCurrentUser={setCurrentUser}
-                setStudents={setStudents}
-              />
-            }
-          />
-          <Route
-            path="*"
-            element={
-              <>
-                <h1>404 path not found</h1>
-              </>
-            }
-          />
-        </Routes>
+            <Route
+              path="/profile"
+              element={
+                <Profile
+                  setCurrentUser={setCurrentUser}
+                  setStudents={setStudents}
+                />
+              }
+            />
+            <Route
+              path="/signup"
+              element={<SignUp setCurrentUser={setCurrentUser} />}
+            />
+            <Route
+              path="/login"
+              element={
+                <LogIn
+                  setCurrentUser={setCurrentUser}
+                  setStudents={setStudents}
+                />
+              }
+            />
+            <Route
+              path="*"
+              element={
+                <>
+                  <h1>404 path not found</h1>
+                </>
+              }
+            />
+          </Routes>
+        </div>
       </UserContext.Provider>
     </div>
   );
