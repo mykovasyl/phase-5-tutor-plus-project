@@ -49,7 +49,7 @@ function App() {
 
   return (
     <div className="App">
-      <UserContext.Provider value={{ currentUser }}>
+      <UserContext.Provider value={{ currentUser, setCurrentUser }}>
         <NavBar handleLogOut={handleLogOut} />
         <div>
           <Routes>

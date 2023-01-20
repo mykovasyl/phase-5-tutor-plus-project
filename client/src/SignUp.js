@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Button, Container, Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import Form from "react-bootstrap/Form";
+import { UserContext } from "./App";
 
 function SignUp() {
+  const { currentUser, setCurrentUser } = useContext(UserContext);
+
   const [error, setError] = useState([]);
   const [signupForm, setSignupForm] = useState({
     username: "",
@@ -21,24 +24,40 @@ function SignUp() {
 
   function handleSubmit(e) {
     e.preventDefault();
+
+    const formData = new FormData();
+    for (let data in signupForm) {
+      formData.append(data, signupForm[data]);
+    }
+    console.log(formData);
     fetch("/signup", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(signupForm),
+      // body: JSON.stringify(signupForm),
+      body: formData,
     }).then((resp) => {
       if (resp.ok) {
-        resp.json().then(navigate("/login"));
+        resp.json().then((user) => {
+          setCurrentUser(user);
+          navigate("/");
+        });
       } else {
         resp.json().then((err) => setError(err.errors));
       }
     });
   }
 
+  // function handleInputChange(e) {
+  //   console.log(e.target.files[0]);
+  //   setSignupForm({ ...signupForm, [e.target.name]: e.target.value });
+  // }
+
   function handleInputChange(e) {
     setSignupForm({ ...signupForm, [e.target.name]: e.target.value });
   }
+
+  // function handleFileChange(e) {
+  //   setSignupForm({ ...signupForm, avatar: e.target.files[0] });
+  // }
 
   function handleOptionChange(e) {
     setSignupForm({ ...signupForm, [e.target.name]: e.target.value });
@@ -87,7 +106,7 @@ function SignUp() {
               />
             </Col>
           </Row>
-          <Row>
+          <Row style={{ marginTop: "16px" }}>
             <Col>
               <Form.Label>Password</Form.Label>
               <Form.Control
@@ -112,7 +131,7 @@ function SignUp() {
               />
             </Col>
           </Row>
-          <p>
+          <p style={{ marginTop: "16px" }}>
             Are you signing up as a tutor or student?
             <br />
             <Form.Check
@@ -166,6 +185,16 @@ function SignUp() {
                   />
                 </Col>
               </Row>
+              {/* <Row style={{ marginTop: "16px" }}>
+                <Col>
+                  <Form.Label>Upload an avatar (optional):</Form.Label>
+                  <Form.Control
+                    name="avatar"
+                    type="file"
+                    onChange={handleFileChange}
+                  />
+                </Col>
+              </Row> */}
             </>
           ) : signupForm.type === "Student" ? (
             <>
@@ -195,9 +224,9 @@ function SignUp() {
           <Button type="submit" variant="success">
             Sign up!
           </Button>
-          {error.map((err) => {
+          {/* {error.map((err) => {
             return <h4>{err}</h4>;
-          })}
+          })} */}
         </Form>
       </Container>
     </div>

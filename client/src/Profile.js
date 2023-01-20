@@ -55,8 +55,8 @@ function Profile({ setCurrentUser, setStudents }) {
         <Container>
           <p>{currentUser.name}</p>
           <br />
-          {/* <p>{currentUser.avatar}</p>
-          <br /> */}
+          {/* <img alt="user's avatar">{currentUser.avatar}</img> */}
+          <br />
           <p>{currentUser.subjects}</p>
           <br />
           <p>{currentUser.headline}</p>
