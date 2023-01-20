@@ -14,9 +14,9 @@ export const UserContext = createContext();
 
 function App() {
   const [errors, setErrors] = useState([]);
-  const [students, setStudents] = useState([]);
-
   const [currentUser, setCurrentUser] = useState({});
+  const [students, setStudents] = useState([]);
+  const [avatar, setAvatar] = useState(null);
 
   const navigate = useNavigate();
 
@@ -31,6 +31,7 @@ function App() {
             ).values(),
           ];
           setStudents(studentsList);
+          setAvatar(user.image_url);
         });
       } else {
         resp.json().then((error) => setErrors(error));
@@ -49,7 +50,9 @@ function App() {
 
   return (
     <div className="App">
-      <UserContext.Provider value={{ currentUser, setCurrentUser }}>
+      <UserContext.Provider
+        value={{ currentUser, setCurrentUser, avatar, setAvatar }}
+      >
         <NavBar handleLogOut={handleLogOut} />
         <div>
           <Routes>

@@ -6,7 +6,7 @@ import Button from "react-bootstrap/Button";
 import { Container, Form } from "react-bootstrap";
 
 function Profile({ setCurrentUser, setStudents }) {
-  const { currentUser } = useContext(UserContext);
+  const { currentUser, avatar } = useContext(UserContext);
   const [editing, setEditing] = useState(false);
   const [formData, setFormData] = useState({});
   const navigate = useNavigate();
@@ -55,7 +55,11 @@ function Profile({ setCurrentUser, setStudents }) {
         <Container>
           <p>{currentUser.name}</p>
           <br />
-          {/* <img alt="user's avatar">{currentUser.avatar}</img> */}
+          <img
+            style={{ height: "128px", width: "128px" }}
+            src={avatar}
+            alt="user's avatar"
+          />
           <br />
           <p>{currentUser.subjects}</p>
           <br />

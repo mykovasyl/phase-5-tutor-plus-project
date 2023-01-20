@@ -3,6 +3,7 @@ class UsersController < ApplicationController
 
   def index
     all_users
+    render json: all_users
   end
 
   # better to add tutor controller? will that carry association? how?

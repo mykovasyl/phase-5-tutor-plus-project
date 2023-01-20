@@ -5,7 +5,7 @@ import Form from "react-bootstrap/Form";
 import { UserContext } from "./App";
 
 function SignUp() {
-  const { currentUser, setCurrentUser } = useContext(UserContext);
+  const { setCurrentUser, avatar, setAvatar } = useContext(UserContext);
 
   const [error, setError] = useState([]);
   const [signupForm, setSignupForm] = useState({
@@ -26,10 +26,15 @@ function SignUp() {
     e.preventDefault();
 
     const formData = new FormData();
+
     for (let data in signupForm) {
       formData.append(data, signupForm[data]);
     }
-    console.log(formData);
+
+    if (avatar !== null) {
+      formData.append("avatar", avatar.avatar);
+    }
+
     fetch("/signup", {
       method: "POST",
       // body: JSON.stringify(signupForm),
@@ -38,6 +43,7 @@ function SignUp() {
       if (resp.ok) {
         resp.json().then((user) => {
           setCurrentUser(user);
+          setAvatar(user.image_url);
           navigate("/");
         });
       } else {
@@ -46,18 +52,13 @@ function SignUp() {
     });
   }
 
-  // function handleInputChange(e) {
-  //   console.log(e.target.files[0]);
-  //   setSignupForm({ ...signupForm, [e.target.name]: e.target.value });
-  // }
-
   function handleInputChange(e) {
     setSignupForm({ ...signupForm, [e.target.name]: e.target.value });
   }
 
-  // function handleFileChange(e) {
-  //   setSignupForm({ ...signupForm, avatar: e.target.files[0] });
-  // }
+  function handleFileChange(e) {
+    setAvatar({ avatar: e.target.files[0] });
+  }
 
   function handleOptionChange(e) {
     setSignupForm({ ...signupForm, [e.target.name]: e.target.value });
@@ -185,7 +186,7 @@ function SignUp() {
                   />
                 </Col>
               </Row>
-              {/* <Row style={{ marginTop: "16px" }}>
+              <Row style={{ marginTop: "16px" }}>
                 <Col>
                   <Form.Label>Upload an avatar (optional):</Form.Label>
                   <Form.Control
@@ -194,7 +195,7 @@ function SignUp() {
                     onChange={handleFileChange}
                   />
                 </Col>
-              </Row> */}
+              </Row>
             </>
           ) : signupForm.type === "Student" ? (
             <>
