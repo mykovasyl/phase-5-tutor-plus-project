@@ -9,6 +9,7 @@ class CreateUsers < ActiveRecord::Migration[6.1]
       t.string :headline
       t.string :grade
       t.string :type
+      t.string :avatar
       t.timestamps
     end
   end
