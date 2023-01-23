@@ -54,15 +54,17 @@ function Profile({ setCurrentUser, setStudents }) {
       return (
         <Container>
           <p>{currentUser.name}</p>
-          <br />
           <img
             style={{ height: "128px", width: "128px" }}
-            src={avatar}
+            src={
+              avatar
+                ? avatar
+                : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+            }
             alt="user's avatar"
           />
           <br />
-          <p>{currentUser.subjects}</p>
-          <br />
+          <p style={{ marginTop: "16px" }}>{currentUser.subjects}</p>
           <p>{currentUser.headline}</p>
           <br />
           <p>

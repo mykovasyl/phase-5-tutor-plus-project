@@ -19,7 +19,7 @@ puts "Seeding..."
     name: Faker::Name.name,
     grade: Faker::Number.between(from: 1, to: 12),
     type: "Student",
-    # avatar: Faker::Avatar.image
+    # avatar: Faker::Placeholdit.image(size: '124x124')
   )
 end
 puts "Done!"

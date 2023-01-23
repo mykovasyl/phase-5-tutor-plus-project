@@ -33,22 +33,29 @@ function Student({ student, setStudents }) {
   });
 
   return (
-    <div style={{ width: "33.3%" }}>
+    <div style={{ width: "33.3%", marginBottom: "16px" }}>
       <Button
         variant="outline-dark"
         onClick={handleModalShow}
         style={{
-          marginBottom: "16px",
+          marginBottom: "8px",
           borderRadius: "8px",
-          width: "100%",
-          height: "80%",
+          width: "90%",
+          height: "100%",
           boxShadow:
             "rgb(0 0 0 / 3%) 0px -1px 0px 0px, rgb(0 0 0 / 16%) 0px 2px 8px 0px, rgb(0 0 0 / 16%) 0px 10px 8px -5px, rgb(0 0 0 / 16%) 0px 12px 32px -2px",
         }}
         type="button"
       >
         <h2>{student.name}</h2>
-        {/* <p>{student.avatar}</p> */}
+        <img
+          style={{ height: "128px", width: "128px" }}
+          src={
+            student.avatar
+              ? student.avatar
+              : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+          }
+        />
       </Button>
       <ReactModal
         isOpen={modalShow}
@@ -65,7 +72,7 @@ function Student({ student, setStudents }) {
           </Stack>
         </Row>
         <Link to="/assignwork" state={{ studentId: student.id }}>
-          <Button type="button" variant="primary">
+          <Button type="button" variant="primary" style={{ marginTop: "8px" }}>
             Assign Work
           </Button>
         </Link>
