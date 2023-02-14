@@ -109,7 +109,7 @@ function AssignWork({ setStudents, students }) {
             />
           </Col>
         </Row>
-        <Row>
+        <Row style={{ marginTop: "16px" }}>
           <Col>
             <Form.Label>Notes:</Form.Label>
             <Form.Control

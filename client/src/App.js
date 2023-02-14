@@ -20,11 +20,14 @@ function App() {
 
   const navigate = useNavigate();
 
+  // fetch current user if exists
   useEffect(() => {
     fetch("/me").then((resp) => {
       if (resp.ok) {
         resp.json().then((user) => {
           setCurrentUser(user);
+
+          // new hash map to get unique students
           let studentsList = [
             ...new Map(
               user.students.map((student) => [student["id"], student])
@@ -39,6 +42,7 @@ function App() {
     });
   }, []);
 
+  // log out current user and reset state
   function handleLogOut() {
     fetch("/logout", {
       method: "DELETE",
@@ -64,6 +68,7 @@ function App() {
         <Route path="/assignments">
           <AssignmentsList />
         </Route> */}
+        
             {/* tutor is logged in */}
             <Route
               path="/students"

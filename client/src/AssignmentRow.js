@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { UserContext } from "./App";
-import { FaTrash, FaCheck } from "react-icons/fa";
+import { FaTrashAlt, FaCheck } from "react-icons/fa";
 import Button from "react-bootstrap/Button";
 import { Form } from "react-bootstrap";
 
@@ -85,9 +85,9 @@ function AssignmentRow({
               </Button>
             )} */}
             {currentUser.id === tutorId ? (
-              <button variant="danger">
-                <FaTrash onClick={() => handleDelete(id)} />
-              </button>
+              <Button variant="danger">
+                <FaTrashAlt onClick={() => handleDelete(id)} />
+              </Button>
             ) : null}
             <p>{errors}</p>
           </td>
