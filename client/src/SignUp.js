@@ -90,8 +90,8 @@ function SignUp() {
             <Col>
               <Form.Label>Username</Form.Label>
               <Form.Control
-                name="username"
-                type="username"
+                name='username'
+                type='username'
                 value={signupForm.username}
                 onChange={handleInputChange}
               />
@@ -99,9 +99,9 @@ function SignUp() {
             <Col>
               <Form.Label>Email address</Form.Label>
               <Form.Control
-                name="email"
-                type="email"
-                placeholder="name@example.com"
+                name='email'
+                type='email'
+                placeholder='name@example.com'
                 value={signupForm.email}
                 onChange={handleInputChange}
               />
@@ -111,8 +111,8 @@ function SignUp() {
             <Col>
               <Form.Label>Password</Form.Label>
               <Form.Control
-                name="password"
-                type="password"
+                name='password'
+                type='password'
                 value={signupForm.password}
                 onChange={handleInputChange}
               />
@@ -125,8 +125,8 @@ function SignUp() {
             <Col>
               <Form.Label>Confirm password</Form.Label>
               <Form.Control
-                name="password_confirmation"
-                type="password"
+                name='password_confirmation'
+                type='password'
                 value={signupForm.password_confirmation}
                 onChange={handleInputChange}
               />
@@ -137,19 +137,19 @@ function SignUp() {
             <br />
             <Form.Check
               inline
-              label="Student"
-              name="type"
-              value="Student"
-              type="radio"
+              label='Student'
+              name='type'
+              value='Student'
+              type='radio'
               checked={signupForm.type === "Student"}
               onChange={handleOptionChange}
             />
             <Form.Check
               inline
-              label="Tutor"
-              name="type"
-              value="Tutor"
-              type="radio"
+              label='Tutor'
+              name='type'
+              value='Tutor'
+              type='radio'
               checked={signupForm.type === "Tutor"}
               onChange={handleOptionChange}
             />
@@ -161,8 +161,8 @@ function SignUp() {
                 <Col>
                   <Form.Label>Full name</Form.Label>
                   <Form.Control
-                    name="name"
-                    type="text"
+                    name='name'
+                    type='text'
                     value={signupForm.name}
                     onChange={handleInputChange}
                   />
@@ -170,8 +170,8 @@ function SignUp() {
                 <Col>
                   <Form.Label>Subjects</Form.Label>
                   <Form.Control
-                    name="subjects"
-                    type="text"
+                    name='subjects'
+                    type='text'
                     value={signupForm.subjects}
                     onChange={handleInputChange}
                   />
@@ -179,8 +179,8 @@ function SignUp() {
                 <Col>
                   <Form.Label>Headline</Form.Label>
                   <Form.Control
-                    name="headline"
-                    type="text"
+                    name='headline'
+                    type='text'
                     value={signupForm.headline}
                     onChange={handleInputChange}
                   />
@@ -190,8 +190,8 @@ function SignUp() {
                 <Col>
                   <Form.Label>Upload an avatar (optional):</Form.Label>
                   <Form.Control
-                    name="avatar"
-                    type="file"
+                    name='avatar'
+                    type='file'
                     onChange={handleFileChange}
                   />
                 </Col>
@@ -203,8 +203,8 @@ function SignUp() {
                 <Col>
                   <Form.Label>Full name:</Form.Label>
                   <Form.Control
-                    name="name"
-                    type="text"
+                    name='name'
+                    type='text'
                     value={signupForm.name}
                     onChange={handleInputChange}
                   />
@@ -212,8 +212,8 @@ function SignUp() {
                 <Col>
                   <Form.Label>Grade:</Form.Label>
                   <Form.Control
-                    name="grade"
-                    type="text"
+                    name='grade'
+                    type='text'
                     value={signupForm.grade}
                     onChange={handleInputChange}
                   />
@@ -222,12 +222,9 @@ function SignUp() {
             </>
           ) : null}
           <br />
-          <Button type="submit" variant="success">
+          <Button type='submit' variant='success'>
             Sign up!
           </Button>
-          {/* {error.map((err) => {
-            return <h4>{err}</h4>;
-          })} */}
         </Form>
       </Container>
     </div>

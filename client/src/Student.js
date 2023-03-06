@@ -8,7 +8,6 @@ import AssignmentRow from "./AssignmentRow";
 import { Button, CloseButton, Stack } from "react-bootstrap";
 
 function Student({ student, setStudents }) {
-  // const [assignments, setAssignments] = useState(student.assignments);
   const [modalShow, setModalShow] = useState(false);
 
   function handleModalShow() {
@@ -19,7 +18,6 @@ function Student({ student, setStudents }) {
     return (
       <AssignmentRow
         key={assignment.id}
-        // avatar={assignment.avatar}
         assignments={student.assignments}
         setStudents={setStudents}
         id={assignment.id}
@@ -35,7 +33,7 @@ function Student({ student, setStudents }) {
   return (
     <div style={{ width: "33.3%", marginBottom: "16px" }}>
       <Button
-        variant="outline-dark"
+        variant='outline-dark'
         onClick={handleModalShow}
         style={{
           marginBottom: "8px",
@@ -45,7 +43,7 @@ function Student({ student, setStudents }) {
           boxShadow:
             "rgb(0 0 0 / 3%) 0px -1px 0px 0px, rgb(0 0 0 / 16%) 0px 2px 8px 0px, rgb(0 0 0 / 16%) 0px 10px 8px -5px, rgb(0 0 0 / 16%) 0px 12px 32px -2px",
         }}
-        type="button"
+        type='button'
       >
         <h2>{student.name}</h2>
         <img
@@ -63,16 +61,15 @@ function Student({ student, setStudents }) {
         ariaHideApp={false}
       >
         <Row>
-          <Stack direction="horizontal">
+          <Stack direction='horizontal'>
             <h2>{student.name}</h2>
-            {/* <p>{student.avatar}</p> */}
-            <div className="ms-auto">
+            <div className='ms-auto'>
               <CloseButton onClick={handleModalShow} />
             </div>
           </Stack>
         </Row>
-        <Link to="/assignwork" state={{ studentId: student.id }}>
-          <Button type="button" variant="primary" style={{ marginTop: "8px" }}>
+        <Link to='/assignwork' state={{ studentId: student.id }}>
+          <Button type='button' variant='primary' style={{ marginTop: "8px" }}>
             Assign Work
           </Button>
         </Link>

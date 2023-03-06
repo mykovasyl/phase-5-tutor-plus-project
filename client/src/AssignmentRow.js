@@ -50,10 +50,6 @@ function AssignmentRow({
     setFormData({ ...formData, [e.target.name]: e.target.value });
   }
 
-  // function handleEdit() {
-  //   setEditing(!editing);
-  // }
-
   function handleUpdate() {
     setEditing(!editing);
     fetch(`/assignments/${id}`, {
@@ -79,13 +75,8 @@ function AssignmentRow({
           <td>{formData.notes}</td>
           <td>File link</td>
           <td>
-            {/* {completed ? null : (
-              <Button variant="warning" onClick={handleEdit}>
-                <FaEdit />
-              </Button>
-            )} */}
             {currentUser.id === tutorId ? (
-              <Button variant="danger">
+              <Button variant='danger'>
                 <FaTrashAlt onClick={() => handleDelete(id)} />
               </Button>
             ) : null}
@@ -98,30 +89,30 @@ function AssignmentRow({
         <>
           <td>
             <Form.Control
-              type="text"
-              name="name"
+              type='text'
+              name='name'
               value={formData.name}
               onChange={handleChange}
             ></Form.Control>
           </td>
           <td>
             <Form.Control
-              type="text"
-              name="subjects"
+              type='text'
+              name='subjects'
               value={formData.subject}
               onChange={handleChange}
             ></Form.Control>
           </td>
           <td>
             <Form.Control
-              type="text"
-              name="notes"
+              type='text'
+              name='notes'
               value={formData.notes}
               onChange={handleChange}
             ></Form.Control>
           </td>
           <td>
-            <Button variant="success" onClick={handleUpdate}>
+            <Button variant='success' onClick={handleUpdate}>
               <FaCheck />
             </Button>
           </td>

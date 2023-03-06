@@ -9,22 +9,13 @@ function AssignWork({ setStudents, students }) {
   const navigate = useNavigate();
   const { studentId } = location.state;
   const { currentUser } = useContext(UserContext);
-  // const [selectedFile, setSelectedFile] = useState(null);
   const [formData, setFormData] = useState({
     name: "",
     notes: "",
     subject: "",
-    // files: [],
     tutor_id: currentUser.id,
     student_id: studentId,
   });
-
-  // function onFileChange(e) {
-  //   setFormData({
-  //     ...formData,
-  //     files: [...formData.files, e.target.files[0]],
-  //   });
-  // }
 
   function handleChange(e) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -51,15 +42,6 @@ function AssignWork({ setStudents, students }) {
             ).values(),
           ];
           setStudents(studentsList);
-          // setStudents([...students, newAssignment.student]);
-          // setFormData({
-          //   name: "",
-          //   notes: "",
-          //   subject: "",
-          //   // files: [],
-          //   tutor_id: "",
-          //   student_id: "",
-          // });
           navigate("/students");
         });
       } else {
@@ -93,8 +75,8 @@ function AssignWork({ setStudents, students }) {
           <Col>
             <Form.Label>Name:</Form.Label>
             <Form.Control
-              type="text"
-              name="name"
+              type='text'
+              name='name'
               value={formData.name}
               onChange={handleChange}
             />
@@ -102,8 +84,8 @@ function AssignWork({ setStudents, students }) {
           <Col>
             <Form.Label>Subject:</Form.Label>
             <Form.Control
-              type="text"
-              name="subject"
+              type='text'
+              name='subject'
               value={formData.subject}
               onChange={handleChange}
             />
@@ -113,19 +95,15 @@ function AssignWork({ setStudents, students }) {
           <Col>
             <Form.Label>Notes:</Form.Label>
             <Form.Control
-              as="textarea"
-              name="notes"
+              as='textarea'
+              name='notes'
               value={formData.notes}
               onChange={handleChange}
             />
           </Col>
         </Row>
-        {/* <label>
-        Select a file:
-        <input type="file" onChange={onFileChange} />
-      </label> */}
         <Row style={{ margin: "8px" }}>
-          <Button type="submit" variant="success">
+          <Button type='submit' variant='success'>
             Upload
           </Button>
         </Row>

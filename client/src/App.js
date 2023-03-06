@@ -53,49 +53,34 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <div className='App'>
       <UserContext.Provider
         value={{ currentUser, setCurrentUser, avatar, setAvatar }}
       >
         <NavBar handleLogOut={handleLogOut} />
         <div>
           <Routes>
-            <Route exact path="/" element={<Home />} />
-            {/* student is logged in */}
-            {/* <Route path="/tutors">
-          <TutorList />
-        </Route>
-        <Route path="/assignments">
-          <AssignmentsList />
-        </Route> */}
-        
-            {/* tutor is logged in */}
+            <Route exact path='/' element={<Home />} />
             <Route
-              path="/students"
+              path='/students'
               element={
                 <Students students={students} setStudents={setStudents} />
               }
             />
             <Route
-              path="/assignwork"
+              path='/assignwork'
               element={
                 <AssignWork students={students} setStudents={setStudents} />
               }
             />
             <Route
-              path="/findstudents"
+              path='/findstudents'
               element={
                 <FindStudents students={students} setStudents={setStudents} />
               }
             />
-            {/* <Route
-          path="/assignments"
-          element={
-            <AssignmentsList students={students} setStudents={setStudents} />
-          }
-        /> */}
             <Route
-              path="/profile"
+              path='/profile'
               element={
                 <Profile
                   setCurrentUser={setCurrentUser}
@@ -104,11 +89,11 @@ function App() {
               }
             />
             <Route
-              path="/signup"
+              path='/signup'
               element={<SignUp setCurrentUser={setCurrentUser} />}
             />
             <Route
-              path="/login"
+              path='/login'
               element={
                 <LogIn
                   setCurrentUser={setCurrentUser}
@@ -117,7 +102,7 @@ function App() {
               }
             />
             <Route
-              path="*"
+              path='*'
               element={
                 <>
                   <h1>404 path not found</h1>
