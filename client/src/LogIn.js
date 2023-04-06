@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Form, Button, Col, Row, Container } from "react-bootstrap";
 
-function LogIn({ setCurrentUser, setStudents }) {
+function LogIn() {
   const [login, setLogin] = useState({
     username: "",
     password: "",
   });
   const navigate = useNavigate();
+  const { setCurrentUser, setStudents } = useContext(UserContext);
 
   function handleInputChange(e) {
     setLogin({ ...login, [e.target.name]: e.target.value });
@@ -57,8 +58,8 @@ function LogIn({ setCurrentUser, setStudents }) {
           <Col>
             <Form.Label>Username:</Form.Label>
             <Form.Control
-              type="text"
-              name="username"
+              type='text'
+              name='username'
               value={login.username}
               onChange={handleInputChange}
             />
@@ -66,14 +67,14 @@ function LogIn({ setCurrentUser, setStudents }) {
           <Col>
             <Form.Label>Password:</Form.Label>
             <Form.Control
-              type="password"
-              name="password"
+              type='password'
+              name='password'
               value={login.password}
               onChange={handleInputChange}
             />
           </Col>
         </Row>
-        <Button type="submit" variant="success" style={{ margin: "16px" }}>
+        <Button type='submit' variant='success' style={{ margin: "16px" }}>
           Log in!
         </Button>
       </Form>

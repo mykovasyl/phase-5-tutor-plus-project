@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Container, Row } from "react-bootstrap";
 import Student from "./Student";
+import { UserContext } from "./App";
 
-function Students({ students, setStudents }) {
+function Students() {
+  const { students, setStudents } = useContext(UserContext);
   return (
     <>
       <Container

@@ -5,8 +5,9 @@ import { FaCheck } from "react-icons/fa";
 import Button from "react-bootstrap/Button";
 import { Container, Form } from "react-bootstrap";
 
-function Profile({ setCurrentUser, setStudents }) {
-  const { currentUser, avatar } = useContext(UserContext);
+function Profile() {
+  const { currentUser, setCurrentUser, setStudents, avatar } =
+    useContext(UserContext);
   const [editing, setEditing] = useState(false);
   const [formData, setFormData] = useState({});
   const navigate = useNavigate();
@@ -69,13 +70,13 @@ function Profile({ setCurrentUser, setStudents }) {
           <br />
           <p>
             <Button
-              variant="warning"
+              variant='warning'
               onClick={handleEdit}
               style={{ marginRight: "16px" }}
             >
               Edit Profile
             </Button>
-            <Button variant="danger" onClick={handleDelete}>
+            <Button variant='danger' onClick={handleDelete}>
               Delete Account
             </Button>
           </p>
@@ -86,31 +87,31 @@ function Profile({ setCurrentUser, setStudents }) {
         <Container style={{ width: "30%" }}>
           <p>
             <Form.Control
-              type="text"
-              name="name"
+              type='text'
+              name='name'
               value={formData.name}
               onChange={handleChange}
             ></Form.Control>
           </p>
           <p>
             <Form.Control
-              type="text"
-              name="subjects"
+              type='text'
+              name='subjects'
               value={formData.subjects}
               onChange={handleChange}
             ></Form.Control>
           </p>
           <p>
             <Form.Control
-              as="textarea"
+              as='textarea'
               rows={3}
-              name="headline"
+              name='headline'
               value={formData.headline}
               onChange={handleChange}
             ></Form.Control>
           </p>
           <p>
-            <Button variant="success" onClick={handleUpdate}>
+            <Button variant='success' onClick={handleUpdate}>
               <FaCheck />
             </Button>
           </p>

@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Container, Row } from "react-bootstrap";
 import Student from "./Student";
+import { UserContext } from "./App";
 
-function FindStudents({ setStudents }) {
+function FindStudents() {
   const [errors, setErrors] = useState([]);
   const [allStudents, setAllStudents] = useState([]);
+  const { setStudents } = useContext(UserContext);
 
   useEffect(() => {
     fetch("/getstudents").then((resp) => {

@@ -3,12 +3,12 @@ import { UserContext } from "./App";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Container, Form, Row, Col, Button } from "react-bootstrap";
 
-function AssignWork({ setStudents, students }) {
+function AssignWork() {
   const [error, setError] = useState([]);
   const location = useLocation();
   const navigate = useNavigate();
   const { studentId } = location.state;
-  const { currentUser } = useContext(UserContext);
+  const { currentUser, setStudents } = useContext(UserContext);
   const [formData, setFormData] = useState({
     name: "",
     notes: "",

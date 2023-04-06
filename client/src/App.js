@@ -55,52 +55,26 @@ function App() {
   return (
     <div className='App'>
       <UserContext.Provider
-        value={{ currentUser, setCurrentUser, avatar, setAvatar }}
+        value={{
+          currentUser,
+          setCurrentUser,
+          students,
+          setStudents,
+          avatar,
+          setAvatar,
+          handleLogOut,
+        }}
       >
-        <NavBar handleLogOut={handleLogOut} />
+        <NavBar />
         <div>
           <Routes>
             <Route exact path='/' element={<Home />} />
-            <Route
-              path='/students'
-              element={
-                <Students students={students} setStudents={setStudents} />
-              }
-            />
-            <Route
-              path='/assignwork'
-              element={
-                <AssignWork students={students} setStudents={setStudents} />
-              }
-            />
-            <Route
-              path='/findstudents'
-              element={
-                <FindStudents students={students} setStudents={setStudents} />
-              }
-            />
-            <Route
-              path='/profile'
-              element={
-                <Profile
-                  setCurrentUser={setCurrentUser}
-                  setStudents={setStudents}
-                />
-              }
-            />
-            <Route
-              path='/signup'
-              element={<SignUp setCurrentUser={setCurrentUser} />}
-            />
-            <Route
-              path='/login'
-              element={
-                <LogIn
-                  setCurrentUser={setCurrentUser}
-                  setStudents={setStudents}
-                />
-              }
-            />
+            <Route path='/students' element={<Students />} />
+            <Route path='/assignwork' element={<AssignWork />} />
+            <Route path='/findstudents' element={<FindStudents />} />
+            <Route path='/profile' element={<Profile />} />
+            <Route path='/signup' element={<SignUp />} />
+            <Route path='/login' element={<LogIn />} />
             <Route
               path='*'
               element={

@@ -4,17 +4,17 @@ import { Link } from "react-router-dom";
 import { Button, Container, Navbar, Row } from "react-bootstrap";
 import { Nav } from "react-bootstrap";
 
-function NavBar({ handleLogOut }) {
+function NavBar() {
   const linkStyling = { color: "white", whiteSpace: "nowrap" };
-  const { currentUser } = useContext(UserContext);
+  const { currentUser, handleLogOut } = useContext(UserContext);
 
   function tutorLinks() {
     return (
       <Nav>
-        <Nav.Link as={Link} to="/students" style={linkStyling}>
+        <Nav.Link as={Link} to='/students' style={linkStyling}>
           Students
         </Nav.Link>
-        <Nav.Link as={Link} to="/findstudents" style={linkStyling}>
+        <Nav.Link as={Link} to='/findstudents' style={linkStyling}>
           Find Students
         </Nav.Link>
       </Nav>
@@ -25,10 +25,10 @@ function NavBar({ handleLogOut }) {
   function studentLinks() {
     return (
       <>
-        <Link as={Link} to="/tutors" style={linkStyling}>
+        <Link as={Link} to='/tutors' style={linkStyling}>
           Tutors
         </Link>
-        <Link as={Link} to="/assignments" style={linkStyling}>
+        <Link as={Link} to='/assignments' style={linkStyling}>
           Assignments
         </Link>
       </>
@@ -37,10 +37,10 @@ function NavBar({ handleLogOut }) {
 
   return (
     <Row>
-      <Navbar bg="dark" variant="dark">
+      <Navbar bg='dark' variant='dark'>
         <Navbar.Brand
           as={Link}
-          to="/"
+          to='/'
           style={{ marginLeft: "25px", color: "white" }}
         >
           Tutor Plus
@@ -53,21 +53,21 @@ function NavBar({ handleLogOut }) {
           : null}
         {/* check if logged in, display proper buttons */}
         <Container
-          className="justify-content-end"
+          className='justify-content-end'
           style={{ marginRight: "13px" }}
         >
           {currentUser.type ? (
             <>
               <Nav.Link
                 as={Link}
-                to="/profile"
+                to='/profile'
                 style={{ ...linkStyling, marginRight: "10px" }}
               >
-                <Button variant="outline-info">
+                <Button variant='outline-info'>
                   <div style={{ fontWeight: "bold" }}>Profile</div>
                 </Button>
               </Nav.Link>
-              <Button variant="outline-danger" onClick={handleLogOut}>
+              <Button variant='outline-danger' onClick={handleLogOut}>
                 <div style={{ fontWeight: "bold" }}>Log out</div>
               </Button>
             </>
@@ -75,19 +75,19 @@ function NavBar({ handleLogOut }) {
             <>
               <Nav.Link
                 as={Link}
-                to="/login"
+                to='/login'
                 style={{ ...linkStyling, marginRight: "10px" }}
               >
-                <Button variant="outline-primary">
+                <Button variant='outline-primary'>
                   <div style={{ fontWeight: "bold" }}>Log in</div>
                 </Button>
               </Nav.Link>
               <Nav.Link
                 as={Link}
-                to="/signup"
+                to='/signup'
                 style={{ ...linkStyling, marginRight: "10px" }}
               >
-                <Button variant="outline-warning">
+                <Button variant='outline-warning'>
                   <div style={{ fontWeight: "bold" }}>Sign up</div>
                 </Button>
               </Nav.Link>
