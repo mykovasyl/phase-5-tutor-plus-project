@@ -48,6 +48,7 @@ function Student({ student, setStudents }) {
         <h2>{student.name}</h2>
         <img
           style={{ height: "128px", width: "128px" }}
+          alt='avatar of student'
           src={
             student.avatar
               ? student.avatar
