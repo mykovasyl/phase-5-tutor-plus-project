@@ -225,6 +225,13 @@ function SignUp() {
             Sign up!
           </Button>
         </Form>
+        {error.map((err) => {
+          return (
+            <p key={err} style={{ color: "red" }}>
+              {err}
+            </p>
+          );
+        })}
       </Container>
     </div>
   );
