@@ -37,7 +37,6 @@ function SignUp() {
 
     fetch("/signup", {
       method: "POST",
-      // body: JSON.stringify(signupForm),
       body: formData,
     }).then((resp) => {
       if (resp.ok) {
