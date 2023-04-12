@@ -32,7 +32,6 @@ function AssignWork() {
     }).then((resp) => {
       if (resp.ok) {
         resp.json().then((newAssignment) => {
-          console.log(newAssignment);
           let studentsList = [
             ...new Map(
               newAssignment.tutor.students.map((student) => [
