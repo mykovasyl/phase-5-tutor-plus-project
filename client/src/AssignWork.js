@@ -16,6 +16,7 @@ function AssignWork() {
     tutor_id: currentUser.id,
     student_id: studentId,
   });
+  const [selectedFiles, setSelectedFiles] = useState([]);
 
   function handleChange(e) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -101,8 +102,23 @@ function AssignWork() {
             />
           </Col>
         </Row>
-        <Row style={{ margin: "8px" }}>
-          <Button type='submit' variant='success'>
+        <Row style={{ marginTop: "16px" }}>
+          <Col>
+            <Form.Control
+              type='file'
+              label='Files:'
+              multiple
+              onChange={(e) => setSelectedFiles(Array.from(e.target.files))}
+            />
+          </Col>
+        </Row>
+        <Row
+          style={{
+            margin: "16px",
+            justifyContent: "center",
+          }}
+        >
+          <Button type='submit' variant='success' style={{ maxWidth: "33%" }}>
             Upload
           </Button>
         </Row>

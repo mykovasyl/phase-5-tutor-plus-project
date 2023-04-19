@@ -32,7 +32,7 @@ class AssignmentsController < ApplicationController
   private
 
   def new_assignment_params
-    params.permit(:name, :subject, :notes, :tutor_id, :student_id)
+    params.permit(:name, :subject, :notes, :tutor_id, :student_id, files: [])
   end
 
   def find_assignment
