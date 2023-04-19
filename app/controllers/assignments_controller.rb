@@ -2,13 +2,29 @@ class AssignmentsController < ApplicationController
   skip_before_action :authorize, only: :create
 
   def index
-    all_tutors_assignments = assignment.select { |assignment| assignment.tutor_id == @current_user.id }
-    render json: all_tutors_assignments, status: :ok
+    all_assignments = Assignment.all
+    render json: all_assignments, status: :ok
+  end
+
+  def show
+    render json: find_assignment.as_json(include: :files).merge(
+      files: assignment.files.map do |file|
+        url_for(file)
+      end,
+    )
   end
 
   def create
-    assignment = Assignment.create!(new_assignment_params)
-    render json: assignment, include: 'tutor.students.assignments', status: :created
+    assignment = Assignment.create!(new_assignment_params.except(:files))
+    files = params[:assignment][:files]
+
+    if files
+      files.each do |file|
+        assignment.files.attach(file)
+      end
+    end
+
+    render json: assignment, include: "tutor.students.assignments", status: :created
     # render json: assignment, include: 'student.assignments', status: :created
   end
 
@@ -25,7 +41,7 @@ class AssignmentsController < ApplicationController
       assignment_to_delete.destroy
       head :no_content
     else
-    render json: { error: "You do not have permission to destroy this assignment." }, status: :unauthorized
+      render json: { error: "You do not have permission to destroy this assignment." }, status: :unauthorized
     end
   end
 

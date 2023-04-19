@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useRef } from "react";
 import { UserContext } from "./App";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Container, Form, Row, Col, Button } from "react-bootstrap";
@@ -9,27 +9,40 @@ function AssignWork() {
   const navigate = useNavigate();
   const { studentId } = location.state;
   const { currentUser, setStudents } = useContext(UserContext);
-  const [formData, setFormData] = useState({
+  const [assignmentData, setAssignmentData] = useState({
     name: "",
     notes: "",
     subject: "",
     tutor_id: currentUser.id,
     student_id: studentId,
   });
-  const [selectedFiles, setSelectedFiles] = useState([]);
+  const filesRef = useRef([]);
+  const postToGet = useRef(1);
+  const [files, setFiles] = useState([]);
 
   function handleChange(e) {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setAssignmentData({ ...assignmentData, [e.target.name]: e.target.value });
   }
 
   function onFormSubmit(e) {
     e.preventDefault();
+
+    const formData = new FormData();
+
+    for (let data in assignmentData) {
+      formData.append(data, assignmentData[data]);
+    }
+
+    for (let i = 0; i < filesRef.current.files.length; i++) {
+      formData.append("assignment[files][]", filesRef.current.files[i]);
+    }
+
     fetch("/assignments", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(formData),
+      body: formData,
     }).then((resp) => {
       if (resp.ok) {
         resp.json().then((newAssignment) => {
@@ -42,12 +55,22 @@ function AssignWork() {
             ).values(),
           ];
           setStudents(studentsList);
+          getFiles();
           navigate("/students");
         });
       } else {
         resp.json().then((error) => setError(error.errors));
       }
     });
+  }
+
+  function getFiles() {
+    fetch(`/assignments/${postToGet.current.value}`)
+      .then((resp) => resp.json())
+      .then((data) => {
+        setFiles(data.files);
+      })
+      .catch((error) => console.log(error));
   }
 
   return (
@@ -77,7 +100,7 @@ function AssignWork() {
             <Form.Control
               type='text'
               name='name'
-              value={formData.name}
+              value={assignmentData.name}
               onChange={handleChange}
             />
           </Col>
@@ -86,7 +109,7 @@ function AssignWork() {
             <Form.Control
               type='text'
               name='subject'
-              value={formData.subject}
+              value={assignmentData.subject}
               onChange={handleChange}
             />
           </Col>
@@ -97,7 +120,7 @@ function AssignWork() {
             <Form.Control
               as='textarea'
               name='notes'
-              value={formData.notes}
+              value={assignmentData.notes}
               onChange={handleChange}
             />
           </Col>
@@ -106,9 +129,10 @@ function AssignWork() {
           <Col>
             <Form.Control
               type='file'
-              label='Files:'
+              name='file'
               multiple
-              onChange={(e) => setSelectedFiles(Array.from(e.target.files))}
+              ref={filesRef}
+              // onChange={(e) => setSelectedFiles(Array.from(e.target.files))}
             />
           </Col>
         </Row>
@@ -122,9 +146,9 @@ function AssignWork() {
             Upload
           </Button>
         </Row>
-        {error.map((error) => {
+        {/* {error.map((error) => {
           return <p key={error}>{error}</p>;
-        })}
+        })} */}
       </Form>
     </Container>
   );
