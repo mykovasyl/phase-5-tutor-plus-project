@@ -1,4 +1,4 @@
-import React, { useState, useContext, useRef } from "react";
+import React, { useState, useContext } from "react";
 import { UserContext } from "./App";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Container, Form, Row, Col, Button } from "react-bootstrap";
@@ -15,10 +15,9 @@ function AssignWork() {
     subject: "",
     tutor_id: currentUser.id,
     student_id: studentId,
+    files: "",
   });
-  const filesRef = useRef([]);
-  const postToGet = useRef(1);
-  const [files, setFiles] = useState([]);
+  // const [files, setFiles] = useState(null);
 
   function handleChange(e) {
     setAssignmentData({ ...assignmentData, [e.target.name]: e.target.value });
@@ -27,25 +26,22 @@ function AssignWork() {
   function onFormSubmit(e) {
     e.preventDefault();
 
-    const formData = new FormData();
+    // const formData = new FormData();
 
-    for (let data in assignmentData) {
-      formData.append(data, assignmentData[data]);
-    }
-
-    for (let i = 0; i < filesRef.current.files.length; i++) {
-      formData.append("assignment[files][]", filesRef.current.files[i]);
-    }
+    // for (let data in assignmentData) {
+    //   formData.append(data, assignmentData[data]);
+    // }
 
     fetch("/assignments", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: formData,
+      body: JSON.stringify(assignmentData),
     }).then((resp) => {
       if (resp.ok) {
         resp.json().then((newAssignment) => {
+          console.log(newAssignment);
           let studentsList = [
             ...new Map(
               newAssignment.tutor.students.map((student) => [
@@ -55,22 +51,12 @@ function AssignWork() {
             ).values(),
           ];
           setStudents(studentsList);
-          getFiles();
           navigate("/students");
         });
       } else {
         resp.json().then((error) => setError(error.errors));
       }
     });
-  }
-
-  function getFiles() {
-    fetch(`/assignments/${postToGet.current.value}`)
-      .then((resp) => resp.json())
-      .then((data) => {
-        setFiles(data.files);
-      })
-      .catch((error) => console.log(error));
   }
 
   return (
@@ -131,8 +117,9 @@ function AssignWork() {
               type='file'
               name='file'
               multiple
-              ref={filesRef}
-              // onChange={(e) => setSelectedFiles(Array.from(e.target.files))}
+              onChange={(e) =>
+                setAssignmentData({ ...assignmentData, files: e.target.files })
+              }
             />
           </Col>
         </Row>
