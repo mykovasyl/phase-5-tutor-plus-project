@@ -18,7 +18,6 @@ function Student({ student, setStudents }) {
     return (
       <AssignmentRow
         key={assignment.id}
-        assignments={student.assignments}
         setStudents={setStudents}
         id={assignment.id}
         name={assignment.name}
@@ -26,6 +25,7 @@ function Student({ student, setStudents }) {
         notes={assignment.notes}
         tutorId={assignment.tutor_id}
         studentId={assignment.student_id}
+        fileUrl={assignment.file_url}
       />
     );
   });

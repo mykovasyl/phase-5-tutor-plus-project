@@ -15,29 +15,33 @@ function AssignWork() {
     subject: "",
     tutor_id: currentUser.id,
     student_id: studentId,
-    files: "",
   });
-  // const [files, setFiles] = useState(null);
+  const [file, setFile] = useState(null);
 
   function handleChange(e) {
     setAssignmentData({ ...assignmentData, [e.target.name]: e.target.value });
   }
 
+  function handleFileChange(e) {
+    setFile({ file: e.target.files[0] });
+  }
+
   function onFormSubmit(e) {
     e.preventDefault();
 
-    // const formData = new FormData();
+    const formData = new FormData();
 
-    // for (let data in assignmentData) {
-    //   formData.append(data, assignmentData[data]);
-    // }
+    for (let data in assignmentData) {
+      formData.append(data, assignmentData[data]);
+    }
+
+    if (file !== null) {
+      formData.append("file", file.file);
+    }
 
     fetch("/assignments", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(assignmentData),
+      body: formData,
     }).then((resp) => {
       if (resp.ok) {
         resp.json().then((newAssignment) => {
@@ -113,14 +117,7 @@ function AssignWork() {
         </Row>
         <Row style={{ marginTop: "16px" }}>
           <Col>
-            <Form.Control
-              type='file'
-              name='file'
-              multiple
-              onChange={(e) =>
-                setAssignmentData({ ...assignmentData, files: e.target.files })
-              }
-            />
+            <Form.Control type='file' name='file' onChange={handleFileChange} />
           </Col>
         </Row>
         <Row

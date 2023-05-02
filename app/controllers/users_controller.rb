@@ -6,19 +6,11 @@ class UsersController < ApplicationController
     render json: all_users
   end
 
-  # better to add tutor controller? will that carry association? how?
-  def tutors_students 
+  def tutors_students
     students = Student.all
-    # filter students for only those not currently associated with tutor
-    unassociated_students = students.select{|user| !user.tutors.include?(@current_user)} 
-    render json: unassociated_students, include: 'assignments.tutor', status: :ok
+    unassociated_students = students.select { |user| !user.tutors.include?(@current_user) }
+    render json: unassociated_students, include: "assignments.tutor", status: :ok
   end
-
-  # def students_tutors
-  #   tutors = all_users.select{|user| user.type == "Tutor"}
-  #   # filter tutors for only those not currently associated with student
-  #   render json: tutors, status: :ok
-  # end
 
   def create
     user = User.create!(new_user_params)
@@ -27,12 +19,11 @@ class UsersController < ApplicationController
   end
 
   def show
-    render json: @current_user, include: 'students.assignments'
+    render json: @current_user, include: "students.assignments"
   end
 
   def update
     user_to_update = find_user
-    # user_to_update.avatar.attach(params[:avatar])
     user_to_update.update!(update_user_params)
     render json: user_to_update, status: :accepted
   end
@@ -60,5 +51,4 @@ class UsersController < ApplicationController
   def find_user
     User.find(params[:id])
   end
-
 end

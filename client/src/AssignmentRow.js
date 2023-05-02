@@ -12,6 +12,7 @@ function AssignmentRow({
   tutorId,
   studentId,
   setStudents,
+  fileUrl,
 }) {
   const { currentUser } = useContext(UserContext);
   const [errors, setErrors] = useState([]);
@@ -20,6 +21,7 @@ function AssignmentRow({
     name: name,
     subject: subject,
     notes: notes,
+    fileUrl: fileUrl,
   });
 
   function handleDelete(id) {
@@ -73,7 +75,9 @@ function AssignmentRow({
           <td>{formData.name}</td>
           <td>{formData.subject}</td>
           <td>{formData.notes}</td>
-          <td>File link</td>
+          <td>
+            <a href={formData.fileUrl}>Open File</a>
+          </td>
           <td>
             {currentUser.id === tutorId ? (
               <Button variant='danger'>

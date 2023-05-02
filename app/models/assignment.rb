@@ -2,15 +2,11 @@ class Assignment < ApplicationRecord
   belongs_to :student
   belongs_to :tutor
 
-  has_many_attached :files
+  has_one_attached :file
 
   validates :name, :subject, presence: true
 
-  # def file_urls
-  #   if files.attached?
-  #     files.each do |file|
-  #       Rails.application.routes.url_helpers.url_for(file)
-  #     end
-  #   end
-  # end
+  def file_url
+    Rails.application.routes.url_helpers.url_for(file) if file.attached?
+  end
 end

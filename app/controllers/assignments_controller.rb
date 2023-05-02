@@ -6,19 +6,9 @@ class AssignmentsController < ApplicationController
     render json: all_assignments, status: :ok
   end
 
-  # def show
-  #   render json: find_assignment.as_json(include: :files).merge(
-  #     files: assignment.files.map do |file|
-  #       url_for(file)
-  #     end,
-  #   )
-  # end
-
   def create
-    byebug
-    # assignment = Assignment.create!(new_assignment_params)
-    # assignment.update({ files: params[:files] })
-    # render json: assignment, include: "tutor.students.assignments", status: :created
+    assignment = Assignment.create!(new_assignment_params)
+    render json: assignment, include: "tutor.students.assignments", status: :created
   end
 
   def destroy
@@ -34,15 +24,10 @@ class AssignmentsController < ApplicationController
   private
 
   def new_assignment_params
-    params.permit(:name, :subject, :notes, :tutor_id, :student_id, :files)
+    params.permit(:name, :subject, :notes, :tutor_id, :student_id, :file)
   end
 
   def find_assignment
     Assignment.find(params[:id])
   end
-
-  # def update_assignment_params
-  #   params.permit()
-  # end
-
 end
