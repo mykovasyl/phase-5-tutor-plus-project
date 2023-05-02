@@ -70,7 +70,11 @@ function Student({ student, setStudents }) {
           </Stack>
         </Row>
         <Link to='/assignwork' state={{ studentId: student.id }}>
-          <Button type='button' variant='primary' style={{ marginTop: "8px" }}>
+          <Button
+            type='button'
+            variant='outline-primary'
+            style={{ marginTop: "8px" }}
+          >
             Assign Work
           </Button>
         </Link>

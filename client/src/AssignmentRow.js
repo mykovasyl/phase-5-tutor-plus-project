@@ -2,7 +2,8 @@ import React, { useState, useContext } from "react";
 import { UserContext } from "./App";
 import { FaTrashAlt, FaCheck } from "react-icons/fa";
 import Button from "react-bootstrap/Button";
-import { Form } from "react-bootstrap";
+import { Form, Modal } from "react-bootstrap";
+import FileButton from "./FileButton";
 
 function AssignmentRow({
   id,
@@ -23,6 +24,16 @@ function AssignmentRow({
     notes: notes,
     fileUrl: fileUrl,
   });
+
+  // const [showModal, setShowModal] = useState(false);
+
+  // const handleShowModal = () => {
+  //   setShowModal(true);
+  // };
+
+  // const handleCloseModal = () => {
+  //   setShowModal(false);
+  // };
 
   function handleDelete(id) {
     fetch(`/assignments/${id}`, {
@@ -76,7 +87,22 @@ function AssignmentRow({
           <td>{formData.subject}</td>
           <td>{formData.notes}</td>
           <td>
-            <a href={formData.fileUrl}>Open File</a>
+            <FileButton fileUrl={formData.fileUrl}>Open Assignment</FileButton>
+            {/* <a href={formData.fileUrl} target='_blank'>
+              Open Assignment
+            </a> */}
+            {/* <FilePreview fileUrl={formData.fileUrl} /> */}
+            {/* <Button variant='success' onClick={handleShowModal}>
+              Open Assignment
+            </Button>
+            <Modal show={showModal} onHide={handleCloseModal} size='lg'>
+              <Modal.Header closeButton>
+                <Modal.Title>File Preview</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <iframe src={formData.fileUrl} title='File Preview'></iframe>
+              </Modal.Body>
+            </Modal> */}
           </td>
           <td>
             {currentUser.id === tutorId ? (
