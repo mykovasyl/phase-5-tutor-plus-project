@@ -9,12 +9,14 @@ import AssignWork from "./AssignWork";
 import SignUp from "./SignUp";
 import LogIn from "./LogIn";
 import Profile from "./Profile";
+import Tutors from "./Tutors";
 
 export const UserContext = createContext();
 
 function App() {
   const [errors, setErrors] = useState([]);
   const [currentUser, setCurrentUser] = useState({});
+  const [tutors, setTutors] = useState([]);
   const [students, setStudents] = useState([]);
   const [avatar, setAvatar] = useState(null);
 
@@ -27,13 +29,21 @@ function App() {
         resp.json().then((user) => {
           setCurrentUser(user);
 
-          // new hash map to get unique students
-          let studentsList = [
-            ...new Map(
-              user.students.map((student) => [student["id"], student])
-            ).values(),
-          ];
-          setStudents(studentsList);
+          if (user.type === "Tutor") {
+            // new hash map to get unique students
+            let studentsList = [
+              ...new Map(
+                user.students.map((student) => [student["id"], student])
+              ).values(),
+            ];
+            setStudents(studentsList);
+          } else {
+            let tutorsList = [
+              ...new Map(
+                user.tutors.map((tutor) => [tutor["id"], tutor])
+              ).values(),
+            ];
+          }
           setAvatar(user.image_url);
         });
       } else {
@@ -72,6 +82,7 @@ function App() {
             <Route path='/students' element={<Students />} />
             <Route path='/assignwork' element={<AssignWork />} />
             <Route path='/findstudents' element={<FindStudents />} />
+            <Route path='/tutors' element={<Tutors />} />
             <Route path='/profile' element={<Profile />} />
             <Route path='/signup' element={<SignUp />} />
             <Route path='/login' element={<LogIn />} />
