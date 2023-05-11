@@ -9,7 +9,6 @@ import AssignWork from "./AssignWork";
 import SignUp from "./SignUp";
 import LogIn from "./LogIn";
 import Profile from "./Profile";
-import Tutors from "./Tutors";
 
 export const UserContext = createContext();
 
@@ -82,7 +81,6 @@ function App() {
             <Route path='/students' element={<Students />} />
             <Route path='/assignwork' element={<AssignWork />} />
             <Route path='/findstudents' element={<FindStudents />} />
-            <Route path='/tutors' element={<Tutors />} />
             <Route path='/profile' element={<Profile />} />
             <Route path='/signup' element={<SignUp />} />
             <Route path='/login' element={<LogIn />} />
