@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Container, Row } from "react-bootstrap";
+import { Container, Form, Row } from "react-bootstrap";
 import Student from "./Student";
 import { UserContext } from "./App";
 
 function FindStudents() {
   const [errors, setErrors] = useState([]);
   const [allStudents, setAllStudents] = useState([]);
+  const [filterByName, setFilterByName] = useState("");
   const { setStudents } = useContext(UserContext);
 
   useEffect(() => {
@@ -20,11 +21,19 @@ function FindStudents() {
     });
   }, []);
 
-  const displayStudents = allStudents.map((student) => {
+  const filteredStudents = allStudents.filter((student) =>
+    student.name.toLowerCase().includes(filterByName.toLowerCase())
+  );
+
+  const displayStudents = filteredStudents.map((student) => {
     return (
       <Student key={student.id} student={student} setStudents={setStudents} />
     );
   });
+
+  function handleNameSearch(e) {
+    setFilterByName(e.target.value);
+  }
 
   return (
     <>
@@ -47,6 +56,17 @@ function FindStudents() {
         >
           Find Your Student
         </h2>
+        <Container>
+          <Form.Control
+            type='input'
+            placeholder='Search by name'
+            onChange={handleNameSearch}
+            style={{
+              marginBottom: "24px",
+              padding: "8px",
+            }}
+          />
+        </Container>
         <Row>{displayStudents}</Row>
         {errors.map((err) => {
           return <div key={err}>{err}</div>;
