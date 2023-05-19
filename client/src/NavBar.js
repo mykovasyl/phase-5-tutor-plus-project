@@ -24,14 +24,11 @@ function NavBar() {
   // not currently in use
   function studentLinks() {
     return (
-      <>
-        <Link as={Link} to='/tutors' style={linkStyling}>
-          Tutors
-        </Link>
-        <Link as={Link} to='/assignments' style={linkStyling}>
+      <Nav>
+        <Nav.Link as={Link} to='/assignments' style={linkStyling}>
           Assignments
-        </Link>
-      </>
+        </Nav.Link>
+      </Nav>
     );
   }
 

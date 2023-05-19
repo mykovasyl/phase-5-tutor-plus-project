@@ -9,6 +9,7 @@ import AssignWork from "./AssignWork";
 import SignUp from "./SignUp";
 import LogIn from "./LogIn";
 import Profile from "./Profile";
+import StudentAssignments from "./StudentAssignments";
 
 export const UserContext = createContext();
 
@@ -37,11 +38,11 @@ function App() {
             ];
             setStudents(studentsList);
           } else {
-            let tutorsList = [
-              ...new Map(
-                user.tutors.map((tutor) => [tutor["id"], tutor])
-              ).values(),
-            ];
+            // let tutorsList = [
+            //   ...new Map(
+            //     user.tutors.map((tutor) => [tutor["id"], tutor])
+            //   ).values(),
+            // ];
           }
           setAvatar(user.image_url);
         });
@@ -81,6 +82,7 @@ function App() {
             <Route path='/students' element={<Students />} />
             <Route path='/assignwork' element={<AssignWork />} />
             <Route path='/findstudents' element={<FindStudents />} />
+            <Route path='/assignments' element={<StudentAssignments />} />
             <Route path='/profile' element={<Profile />} />
             <Route path='/signup' element={<SignUp />} />
             <Route path='/login' element={<LogIn />} />
