@@ -21,7 +21,6 @@ function NavBar() {
     );
   }
 
-  // not currently in use
   function studentLinks() {
     return (
       <Nav>
