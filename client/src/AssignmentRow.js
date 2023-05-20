@@ -13,6 +13,7 @@ function AssignmentRow({
   tutorId,
   studentId,
   setStudents,
+  tutor,
   fileUrl,
 }) {
   const { currentUser } = useContext(UserContext);
@@ -79,6 +80,7 @@ function AssignmentRow({
           <td>
             <FileButton fileUrl={formData.fileUrl}>Open Assignment</FileButton>
           </td>
+          {currentUser.type === "Student" ? <td>{tutor}</td> : null}
           <td>
             {currentUser.id === tutorId ? (
               <Button variant='danger'>

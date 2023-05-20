@@ -6,9 +6,9 @@ class SessionsController < ApplicationController
     if user&.authenticate(params[:password])
       session[:user_id] = user.id
       if user.type === "Tutor"
-        render json: user, include: 'students.assignments'
+        render json: user, include: "students.assignments"
       elsif user.type === "Student"
-        render json: user, include: 'tutors.assignments'
+        render json: user, include: "assignments.tutor"
       else
         render json: { errors: "Invalid username or password" }, status: :unauthorized
       end

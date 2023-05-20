@@ -16,7 +16,6 @@ export const UserContext = createContext();
 function App() {
   const [errors, setErrors] = useState([]);
   const [currentUser, setCurrentUser] = useState({});
-  const [tutors, setTutors] = useState([]);
   const [students, setStudents] = useState([]);
   const [avatar, setAvatar] = useState(null);
 
@@ -37,12 +36,14 @@ function App() {
               ).values(),
             ];
             setStudents(studentsList);
+            setErrors([]);
           } else {
             // let tutorsList = [
             //   ...new Map(
             //     user.tutors.map((tutor) => [tutor["id"], tutor])
             //   ).values(),
             // ];
+            setErrors([]);
           }
           setAvatar(user.image_url);
         });

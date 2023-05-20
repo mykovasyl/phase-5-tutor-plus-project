@@ -19,7 +19,11 @@ class UsersController < ApplicationController
   end
 
   def show
-    render json: @current_user, include: "students.assignments"
+    if @current_user.type === "Tutor"
+      render json: @current_user, include: "students.assignments"
+    else
+      render json: @current_user, include: "assignments.tutor"
+    end
   end
 
   def update
