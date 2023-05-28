@@ -111,6 +111,7 @@ GEM
       racc (~> 1.4)
     nokogiri (1.11.7-x86_64-darwin)
       racc (~> 1.4)
+    pg (1.5.3)
     pry (0.14.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -182,7 +183,6 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    sqlite3 (1.4.4)
     thor (1.1.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
@@ -204,6 +204,7 @@ DEPENDENCIES
   image_processing (~> 1.2)
   jsonapi-serializer (~> 2.2)
   listen (~> 3.3)
+  pg (~> 1.1)
   pry
   puma (~> 5.0)
   rack-cors
@@ -212,7 +213,6 @@ DEPENDENCIES
   rspec-rails (~> 5.0.0)
   shoulda-matchers (~> 4.0)
   spring
-  sqlite3 (~> 1.4)
   tzinfo-data
 
 RUBY VERSION
