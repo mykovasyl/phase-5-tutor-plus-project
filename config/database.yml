@@ -84,4 +84,4 @@ production:
   url: <%= ENV['DATABASE_URL'] %>
   database: tutorplus_production
   username: tutorplus
-  password: <%= ENV['TUTOR_PLUS_DATABASE_PASSWORD'] %>
+  password: <%= ENV['TUTORPLUS_DATABASE_PASSWORD'] %>
