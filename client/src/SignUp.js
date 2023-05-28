@@ -218,6 +218,16 @@ function SignUp() {
                   />
                 </Col>
               </Row>
+              <Row style={{ marginTop: "16px" }}>
+                <Col>
+                  <Form.Label>Upload an avatar (optional):</Form.Label>
+                  <Form.Control
+                    name='avatar'
+                    type='file'
+                    onChange={handleFileChange}
+                  />
+                </Col>
+              </Row>
             </>
           ) : null}
           <br />

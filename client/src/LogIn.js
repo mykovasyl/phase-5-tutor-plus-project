@@ -34,8 +34,8 @@ function LogIn() {
             ];
             setStudents(studentsList);
             setErrors([]);
-            navigate("/");
           }
+          navigate("/");
         });
       } else {
         alert("Invalid username or password");

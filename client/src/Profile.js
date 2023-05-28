@@ -85,36 +85,37 @@ function Profile() {
     } else {
       return (
         <Container style={{ width: "30%" }}>
-          <p>
-            <Form.Control
-              type='text'
-              name='name'
-              value={formData.name}
-              onChange={handleChange}
-            ></Form.Control>
-          </p>
-          <p>
-            <Form.Control
-              type='text'
-              name='subjects'
-              value={formData.subjects}
-              onChange={handleChange}
-            ></Form.Control>
-          </p>
-          <p>
-            <Form.Control
-              as='textarea'
-              rows={3}
-              name='headline'
-              value={formData.headline}
-              onChange={handleChange}
-            ></Form.Control>
-          </p>
-          <p>
-            <Button variant='success' onClick={handleUpdate}>
-              <FaCheck />
-            </Button>
-          </p>
+          <Form.Control
+            type='text'
+            name='name'
+            value={formData.name}
+            onChange={handleChange}
+            style={{ marginBottom: "8px" }}
+          ></Form.Control>
+
+          {currentUser.type === "Tutor" ? (
+            <>
+              <Form.Control
+                type='text'
+                name='subjects'
+                value={formData.subjects}
+                onChange={handleChange}
+                style={{ marginBottom: "8px" }}
+              ></Form.Control>
+              <Form.Control
+                as='textarea'
+                rows={3}
+                name='headline'
+                value={formData.headline}
+                onChange={handleChange}
+                style={{ marginBottom: "8px" }}
+              ></Form.Control>
+            </>
+          ) : null}
+
+          <Button variant='success' onClick={handleUpdate}>
+            <FaCheck />
+          </Button>
         </Container>
       );
     }
