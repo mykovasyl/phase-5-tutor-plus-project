@@ -13,7 +13,7 @@ function FileButton({ fileUrl }) {
   };
 
   return (
-    <Button variant={buttonClass} onClick={openFile}>
+    <Button variant={buttonClass} disabled={!fileUrl} onClick={openFile}>
       <FaFile className='mr-1' />
       Open File in New Tab
     </Button>

@@ -39,8 +39,11 @@ function StudentAssignments() {
               <td>Subject</td>
               <td>Notes</td>
               <td>File</td>
-              {currentUser.type === "Student" ? <td>Tutor</td> : null}
-              {currentUser.type === "Tutor" ? <td>Delete</td> : null}
+              {currentUser.type === "Student" ? (
+                <td>Tutor</td>
+              ) : (
+                <td>Delete</td>
+              )}
             </tr>
           </thead>
           <tbody>{assignments}</tbody>
