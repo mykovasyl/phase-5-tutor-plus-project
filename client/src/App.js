@@ -27,7 +27,6 @@ function App() {
       if (resp.ok) {
         resp.json().then((user) => {
           setCurrentUser(user);
-
           if (user.type === "Tutor") {
             // new hash map to get unique students
             let studentsList = [
@@ -74,6 +73,7 @@ function App() {
           avatar,
           setAvatar,
           handleLogOut,
+          setErrors,
         }}
       >
         <NavBar />

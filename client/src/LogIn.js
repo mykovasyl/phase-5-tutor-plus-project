@@ -9,7 +9,7 @@ function LogIn() {
     password: "",
   });
   const navigate = useNavigate();
-  const { setCurrentUser, setStudents } = useContext(UserContext);
+  const { setCurrentUser, setStudents, setErrors } = useContext(UserContext);
 
   function handleInputChange(e) {
     setLogin({ ...login, [e.target.name]: e.target.value });
@@ -25,8 +25,17 @@ function LogIn() {
       if (resp.ok) {
         resp.json().then((loggedInUser) => {
           setCurrentUser(loggedInUser);
-          setStudents(loggedInUser.students);
-          navigate("/");
+          if (loggedInUser.type === "Tutor") {
+            // new hash map to get unique students
+            let studentsList = [
+              ...new Map(
+                loggedInUser.students.map((student) => [student["id"], student])
+              ).values(),
+            ];
+            setStudents(studentsList);
+            setErrors([]);
+            navigate("/");
+          }
         });
       } else {
         alert("Invalid username or password");
