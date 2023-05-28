@@ -15,7 +15,7 @@ function FileButton({ fileUrl }) {
   return (
     <Button variant={buttonClass} disabled={!fileUrl} onClick={openFile}>
       <FaFile className='mr-1' />
-      Open File in New Tab
+      {fileUrl ? "Open File in New Tab" : "No File is Available"}
     </Button>
   );
 }

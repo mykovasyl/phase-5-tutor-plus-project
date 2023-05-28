@@ -78,7 +78,7 @@ function AssignmentRow({
           <td>{formData.subject}</td>
           <td>{formData.notes}</td>
           <td>
-            <FileButton fileUrl={formData.fileUrl}>Open Assignment</FileButton>
+            <FileButton fileUrl={formData.fileUrl} />
           </td>
           {currentUser.type === "Student" ? <td>{tutor}</td> : null}
           <td>
