@@ -23,7 +23,7 @@ default: &default
 
 development:
   <<: *default
-  database: tutor_plus_development
+  database: tutorplus_development
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -57,7 +57,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: tutor_plus_test
+  database: tutorplus_test
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -82,6 +82,6 @@ test:
 production:
   <<: *default
   url: <%= ENV['DATABASE_URL'] %>
-  database: tutor_plus_production
-  username: tutor_plus
+  database: tutorplus_production
+  username: tutorplus
   password: <%= ENV['TUTOR_PLUS_DATABASE_PASSWORD'] %>
