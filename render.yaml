@@ -14,5 +14,5 @@ services:
         fromDatabase:
           name: tutorplus
           property: connectionString
-      - key: a299b9a249739019c75997e92574758c
+      - key: RAILS_MASTER_KEY
         sync: false
