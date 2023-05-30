@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-require 'faker'
+require "faker"
 
 faker_password = Faker::Internet.password
 puts "Seeding..."
@@ -19,7 +19,7 @@ puts "Seeding..."
     name: Faker::Name.name,
     grade: Faker::Number.between(from: 1, to: 12),
     type: "Student",
-    # avatar: Faker::Placeholdit.image(size: '124x124')
+    avatar: Faker::Placeholdit.image(size: "124x124"),
   )
 end
 puts "Done!"
